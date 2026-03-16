@@ -74,6 +74,7 @@ export const components = [
     id: '1.3.9',
     label: 'Date Picker',
     slug: 'date-picker',
+    href: '/docs/components/date-picker',
   },
   {
     id: '1.3.10',
