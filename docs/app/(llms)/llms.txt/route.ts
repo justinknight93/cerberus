@@ -6,6 +6,7 @@ import { items as componentsItems } from '@/app/docs/components/[slug]/content/i
 import { items as stylingItems } from '@/app/docs/styling/[slug]/content/items'
 import { items as themingItems } from '@/app/docs/theming/[slug]/content/items'
 import { items as dataGridItems } from '@/app/docs/data-grid/[slug]/content/items'
+import { items as signalsItems } from '@/app/docs/signals/[slug]/content/items'
 
 interface DocumentSet {
   title: string
@@ -20,6 +21,7 @@ type Items =
   | typeof stylingItems
   | typeof themingItems
   | typeof dataGridItems
+  | typeof signalsItems
 
 export const GET = async () => {
   const documentSets: DocumentSet[] = [
@@ -41,6 +43,11 @@ export const GET = async () => {
           title: 'Data Grid',
           type: 'sub-section',
           children: formatItemsToDocSet(dataGridItems),
+        },
+        {
+          title: 'Signals',
+          type: 'sub-section',
+          children: formatItemsToDocSet(signalsItems),
         },
         {
           title: 'Styling',

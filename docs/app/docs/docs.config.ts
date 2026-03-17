@@ -2,6 +2,7 @@ import type { DocConfig, DocPage } from './types'
 import { items as getStartedItems } from './get-started/[slug]/content/items'
 import { items as componentsItems } from './components/[slug]/content/items'
 import { items as dataGridItems } from './data-grid/[slug]/content/items'
+import { items as signalsItems } from './signals/[slug]/content/items'
 import { items as stylingItems } from './styling/[slug]/content/items'
 import { items as themingItems } from './theming/[slug]/content/items'
 
@@ -48,6 +49,18 @@ export const config: DocConfig = {
           'Explore the various components available in the Cerberus Design System and how to use them.',
       },
       items: dataGridItems as unknown as DocPage[],
+    },
+    {
+      id: '2.b',
+      slug: 'signals',
+      label: 'Signals',
+      href: '/docs/signals/overview',
+      meta: {
+        title: 'Signals in Cerberus Design System',
+        description:
+          'Explore the various components available in the Cerberus Design System and how to use them.',
+      },
+      items: signalsItems as unknown as DocPage[],
     },
     {
       id: '3',

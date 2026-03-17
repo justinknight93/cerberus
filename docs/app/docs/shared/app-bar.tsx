@@ -1,5 +1,5 @@
 import { VStack } from '@/styled-system/jsx'
-import { ColorPalette, LogoReact, Rocket, TaskTools } from '@carbon/icons-react'
+import { ColorPalette, IbmMq, LogoReact, Rocket, TaskTools } from '@carbon/icons-react'
 import { For } from '@cerberus-design/react'
 import { LinkItem } from './link-item'
 import { getDocsItems } from '../utils/helpers.server'
@@ -11,6 +11,7 @@ export function AppBar() {
     '1': Rocket,
     '2': LogoReact,
     '2.a': LogoReact,
+    '2.b': IbmMq,
     '3': TaskTools,
     '4': ColorPalette,
   }
@@ -32,11 +33,7 @@ export function AppBar() {
     >
       <For each={navItems}>
         {(item) => (
-          <LinkItem
-            key={item.id}
-            icon={getIcon(item.id as keyof typeof icons)}
-            {...item}
-          >
+          <LinkItem key={item.id} icon={getIcon(item.id as keyof typeof icons)} {...item}>
             {item.label}
           </LinkItem>
         )}

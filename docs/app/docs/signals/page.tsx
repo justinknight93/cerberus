@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
 
 export default function GetStartedPage() {
-  redirect('/docs/data-grid/overview')
+  redirect('/docs/signals/overview')
 }
