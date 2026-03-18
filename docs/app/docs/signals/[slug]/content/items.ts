@@ -47,6 +47,12 @@ export const items = [
   },
   {
     id: '1.4',
+    href: '/docs/signals/create-computed',
+    label: 'createComputed',
+    slug: 'create-computed',
+  },
+  {
+    id: '1.5',
     href: '/docs/signals/batch',
     label: 'batch',
     slug: 'batch',
