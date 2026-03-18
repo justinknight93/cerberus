@@ -1,5 +1,5 @@
 import { VStack } from '@/styled-system/jsx'
-import { ColorPalette, IbmMq, LogoReact, Rocket, TaskTools } from '@carbon/icons-react'
+import { BeeBat, ColorPalette, IbmMq, LogoReact, Rocket } from '@carbon/icons-react'
 import { For } from '@cerberus-design/react'
 import { LinkItem } from './link-item'
 import { getDocsItems } from '../utils/helpers.server'
@@ -12,7 +12,7 @@ export function AppBar() {
     '2': LogoReact,
     '2.a': LogoReact,
     '2.b': IbmMq,
-    '3': TaskTools,
+    '3': BeeBat,
     '4': ColorPalette,
   }
 
