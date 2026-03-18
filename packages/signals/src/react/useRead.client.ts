@@ -34,9 +34,7 @@ export function useRead<T>(accessor: Accessor<T>): T {
 
       const unsubscribe = createEffect(() => {
         accessor() // Register dependency
-        if (!isFirstRun) {
-          onStoreChange()
-        }
+        if (!isFirstRun) onStoreChange()
         isFirstRun = false
       })
 

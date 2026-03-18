@@ -1,4 +1,5 @@
 export const DEMOS = {
-  meta: `import { ReactiveText } from '@cerberus-design/signals'
+  readMeta: `import { useRead } from '@cerberus/signals'`,
+  meta: `import { ReactiveText } from '@cerberus/signals'
 `,
 }

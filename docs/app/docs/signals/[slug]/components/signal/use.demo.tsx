@@ -2,17 +2,18 @@
 
 import { HStack } from '@/styled-system/jsx'
 import { Button, Text } from '@cerberus-design/react'
-import { createSignal, ReactiveText } from '@cerberus-design/signals'
+import { ReactiveText, createSignal, useSignal } from '@cerberus-design/signals'
 
 function createDemoStore() {
-  const [count, setCount] = createSignal<number>(0)
   const [renderCount, setRenderCount] = createSignal<number>(0)
-  return { count, setCount, renderCount, setRenderCount }
+  return { renderCount, setRenderCount }
 }
 
-export function BasicDemo() {
+export function UseDemo() {
   const store = createDemoStore()
-  const increment = () => store.setCount(store.count() + 1)
+  const [count, setCount, getCount] = useSignal<number>(0)
+
+  const increment = () => setCount(count + 1)
 
   store.setRenderCount(store.renderCount() + 1)
 
@@ -20,7 +21,8 @@ export function BasicDemo() {
     <HStack justify="space-between" w="3/4">
       <HStack gap="md" w="full">
         <Button onClick={increment}>Increment</Button>
-        <ReactiveText data={store.count} />
+        <Text>{count}</Text>
+        <ReactiveText data={getCount} />
       </HStack>
 
       <HStack gap="md" w="full">

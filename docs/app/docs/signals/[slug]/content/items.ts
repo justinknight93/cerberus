@@ -51,6 +51,18 @@ export const items = [
     href: '',
   },
   {
+    id: '2.1',
+    href: '/docs/signals/use-read',
+    label: 'useRead',
+    slug: 'use-read',
+  },
+  {
+    id: '2.2',
+    href: '/docs/signals/use-signal',
+    label: 'useSignal',
+    slug: 'use-signal',
+  },
+  {
     id: '3.0',
     label: 'Components',
     href: '',

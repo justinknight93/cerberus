@@ -4,8 +4,16 @@ import { HStack } from '@/styled-system/jsx'
 import { Button, Text } from '@cerberus-design/react'
 import { createSignal, ReactiveText, useRead } from '@cerberus-design/signals'
 
-const [count, setCount] = createSignal<number>(0)
-const [readRenderCount, setReadRenderCount] = createSignal<number>(0)
+function createReadStore() {
+  const [count, setCount] = createSignal<number>(0)
+  const [readRenderCount, setReadRenderCount] = createSignal<number>(0)
+  return {
+    count,
+    readRenderCount,
+    increment: () => setCount(count() + 1),
+    updateRenderCount: () => setReadRenderCount(readRenderCount() + 1),
+  }
+}
 
 /**
  * This entire component will re-render when the count changes
@@ -14,11 +22,12 @@ const [readRenderCount, setReadRenderCount] = createSignal<number>(0)
  * However any ReactiveText child componens will **never** re-render.
  */
 export function ReadDemo() {
-  const countVal = useRead(count)
+  const store = createReadStore()
+  const countVal = useRead(() => store.count())
 
-  const increment = () => setCount(countVal + 1)
+  const increment = () => store.increment()
 
-  setReadRenderCount(readRenderCount() + 1)
+  store.updateRenderCount()
 
   return (
     <HStack justify="space-between" w="3/4">
@@ -29,7 +38,7 @@ export function ReadDemo() {
 
       <HStack gap="md" w="full">
         <Text>Render Count:</Text>
-        <ReactiveText data={readRenderCount} />
+        <ReactiveText data={store.readRenderCount} />
       </HStack>
     </HStack>
   )
