@@ -46,6 +46,12 @@ export const items = [
     slug: 'create-mutation',
   },
   {
+    id: '1.4',
+    href: '/docs/signals/batch',
+    label: 'batch',
+    slug: 'batch',
+  },
+  {
     id: '2.0',
     label: 'Hooks',
     href: '',
