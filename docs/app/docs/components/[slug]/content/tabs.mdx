@@ -73,6 +73,38 @@ function SecondaryTabsPreview() {
 ```
 </CodePreview>
 
+## Orientation
+
+Use the `orientation` prop to render tabs vertically. The `indicatorPlacement` prop can be set to "start" (it defaults to "end").
+
+<CodePreview preview={<VerticalTabsPreview />}>
+```tsx title="Vertical tabs demo"
+import { Tabs } from '@cerberus/react'
+import { Box } from 'styled-system/jsx'
+
+export function VerticalTabsPreview() {
+  return (
+    <Box w="full">
+      <Tabs.Root
+        defaultValue="overview"
+        orientation="vertical"
+        indicatorPlacement="start"
+      >
+        <Tabs.List>
+          <Tabs.Tab value="overview">Overview</Tabs.Tab>
+          <Tabs.Tab value="features">Features</Tabs.Tab>
+          <Tabs.Tab value="pricing">Pricing</Tabs.Tab>
+        </Tabs.List>
+        <Tabs.Panel value="overview">Overview content</Tabs.Panel>
+        <Tabs.Panel value="features">Features content</Tabs.Panel>
+        <Tabs.Panel value="pricing">Pricing content</Tabs.Panel>
+      </Tabs.Root>
+    </Box>
+  )
+}
+```
+</CodePreview>
+
 ## Primitives
 
 You can utilize the primitive components or the `css` prop to customize the tabs.
@@ -109,94 +141,59 @@ content: 'A deep abyss used as a dungeon of torment and suffering.',
 },
 ]
 
-    return (
-      <Box w="1/2">
-        <Tabs.Root defaultValue="asphodel">
-          <Tabs.List
-            css={{
-              bgColor: 'page.surface.200',
-              borderBottom: 'none',
+return (
+<Box w="1/2">
+<Tabs.Root defaultValue="asphodel">
+<Tabs.List
+css={{
+            bgColor: 'page.surface.200',
+            borderBottom: 'none',
+            rounded: 'md',
+            '& > :is([data-part=indicator])': {
+              bgColor: 'danger.surface.initial',
+              h: 'var(--height)',
               rounded: 'md',
-              '& > :is([data-part=indicator])': {
-                bgColor: 'danger.surface.initial',
-                h: 'var(--height)',
-                rounded: 'md',
-                zIndex: 'base',
-              },
-            }}
-          >
-            {tabData.map((tab) => (
-              <Tabs.Tab
-                css={{
-                  zIndex: 'decorator',
-                  _selected: {
-                    color: 'danger.text.100',
-                  },
-                  _after: {
-                    display: 'none',
-                  },
-                }}
-                key={tab.id}
-                value={tab.value}
-              >
-                {tab.label}
-              </Tabs.Tab>
-            ))}
-          </Tabs.List>
+              zIndex: 'base',
+            },
+          }} >
+{tabData.map((tab) => (
+<Tabs.Tab
+css={{
+                zIndex: 'decorator',
+                _selected: {
+                  color: 'danger.text.100',
+                },
+                _after: {
+                  display: 'none',
+                },
+              }}
+key={tab.id}
+value={tab.value} >
+{tab.label}
+</Tabs.Tab>
+))}
+</Tabs.List>
 
-          <For each={tabData}>
-            {(tab) => (
-              <Tabs.Panel
-                key={tab.id}
-                value={tab.value}
-                css={{
-                  paddingBlock: 'md',
-                }}
-              >
-                {tab.content}
-              </Tabs.Panel>
-            )}
-          </For>
-        </Tabs.Root>
-      </Box>
+        <For each={tabData}>
+          {(tab) => (
+            <Tabs.Panel
+              key={tab.id}
+              value={tab.value}
+              css={{
+                paddingBlock: 'md',
+              }}
+            >
+              {tab.content}
+            </Tabs.Panel>
+          )}
+        </For>
+      </Tabs.Root>
+    </Box>
 
 )
 }
 
-````
-</CodePreview>
-
-## Orientation
-
-Use the `orientation` prop to render tabs vertically. The `indicatorPlacement` prop can be set to "start" (it defaults to "end").
-
-<CodePreview preview={<VerticalTabsPreview />}>
-```tsx title="Vertical tabs demo"
-import { Tabs } from '@cerberus/react'
-import { Box } from 'styled-system/jsx'
-
-export function VerticalTabsPreview() {
-  return (
-    <Box w="full">
-      <Tabs.Root
-        defaultValue="overview"
-        orientation="vertical"
-        indicatorPlacement="start"
-      >
-        <Tabs.List>
-          <Tabs.Tab value="overview">Overview</Tabs.Tab>
-          <Tabs.Tab value="features">Features</Tabs.Tab>
-          <Tabs.Tab value="pricing">Pricing</Tabs.Tab>
-        </Tabs.List>
-        <Tabs.Panel value="overview">Overview content</Tabs.Panel>
-        <Tabs.Panel value="features">Features content</Tabs.Panel>
-        <Tabs.Panel value="pricing">Pricing content</Tabs.Panel>
-      </Tabs.Root>
-    </Box>
-  )
-}
-````
-
+```
 </CodePreview>
 
 ## API
@@ -239,3 +236,4 @@ The `TabsParts` API is an Object containing the full family of components.
 | Trigger   | The `TabsTrigger` component which is the tab component.                 |
 | Content   | The `TabsContent` component which is the panel container.               |
 | Indicator | The `TabsIndicator` component which displays based on the active state. |
+```
