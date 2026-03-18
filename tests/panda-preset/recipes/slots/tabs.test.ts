@@ -150,7 +150,7 @@ describe('tabs recipe', () => {
   test('should have a default variant', () => {
     expect(tabs.defaultVariants).toMatchObject({
       palette: 'action',
-      indicatorPlacement: 'after',
+      indicatorPlacement: 'end',
     })
   })
 
@@ -189,7 +189,7 @@ describe('tabs recipe', () => {
 
   test('should have indicatorPlacement variants', () => {
     expect(tabs.variants?.indicatorPlacement).toMatchObject({
-      before: {
+      start: {
         root: {
           '--tabs-indicator-block-end': 'auto',
           '--tabs-indicator-block-start': '0',
@@ -197,7 +197,7 @@ describe('tabs recipe', () => {
           '--tabs-indicator-inline-start': '0',
         },
       },
-      after: {
+      end: {
         root: {
           '--tabs-indicator-block-end': '0',
           '--tabs-indicator-block-start': 'auto',

@@ -41,4 +41,31 @@ describe('Tabs Family & useTabsContext', () => {
     expect(screen.getByText(/tab1 content/i)).toBeInTheDocument()
     expect(screen.queryByText(/tab2 content/i)).toHaveAttribute('data-state')
   })
+
+  test('should default to horizontal orientation and indicatorPlacement end', () => {
+    render(
+      <Tabs.Root defaultValue="tab1" data-testid="root">
+        <TestTabs />
+      </Tabs.Root>,
+    )
+
+    expect(screen.getByTestId('root')).toHaveAttribute('data-orientation', 'horizontal')
+    expect(screen.getByTestId('root').className).toContain('end')
+  })
+
+  test('should allow orientation and indicatorPlacement variant props on the Root', () => {
+    render(
+      <Tabs.Root
+        defaultValue="tab1"
+        data-testid="root"
+        orientation="vertical"
+        indicatorPlacement="start"
+      >
+        <TestTabs />
+      </Tabs.Root>,
+    )
+
+    expect(screen.getByTestId('root')).toHaveAttribute('data-orientation', 'vertical')
+    expect(screen.getByTestId('root').className).toContain('start')
+  })
 })

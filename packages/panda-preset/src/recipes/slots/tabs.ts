@@ -186,7 +186,7 @@ export const tabs: Partial<SlotRecipeConfig> = defineSlotRecipe({
       },
     },
     indicatorPlacement: {
-      before: {
+      start: {
         root: {
           '--tabs-indicator-block-end': 'auto',
           '--tabs-indicator-block-start': '0',
@@ -194,7 +194,7 @@ export const tabs: Partial<SlotRecipeConfig> = defineSlotRecipe({
           '--tabs-indicator-inline-start': '0',
         },
       },
-      after: {
+      end: {
         root: {
           '--tabs-indicator-block-end': '0',
           '--tabs-indicator-block-start': 'auto',
@@ -207,6 +207,6 @@ export const tabs: Partial<SlotRecipeConfig> = defineSlotRecipe({
 
   defaultVariants: {
     palette: 'action',
-    indicatorPlacement: 'after',
+    indicatorPlacement: 'end',
   },
 })

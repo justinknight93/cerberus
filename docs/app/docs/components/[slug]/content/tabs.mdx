@@ -168,7 +168,7 @@ content: 'A deep abyss used as a dungeon of torment and suffering.',
 
 ## Orientation
 
-Use the `orientation` prop to render tabs vertically. The `indicatorPlacement` prop can be set to "before" (it defaults to "after").
+Use the `orientation` prop to render tabs vertically. The `indicatorPlacement` prop can be set to "start" (it defaults to "end").
 
 <CodePreview preview={<VerticalTabsPreview />}>
 ```tsx title="Vertical tabs demo"
@@ -181,7 +181,7 @@ export function VerticalTabsPreview() {
       <Tabs.Root
         defaultValue="overview"
         orientation="vertical"
-        indicatorPlacement="before"
+        indicatorPlacement="start"
       >
         <Tabs.List>
           <Tabs.Tab value="overview">Overview</Tabs.Tab>
@@ -205,11 +205,11 @@ export function VerticalTabsPreview() {
 
 The `Tabs` component is an abstraction of the primitives and accepts the following props:
 
-| Name               | Default      | Description                                                                                                                                                                      |
-| ------------------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| palette            | `action`     | The color palette of the tabs                                                                                                                                                    |
-| orientation        | `horizontal` | The orientation of the group.                                                                                                                                                    |
-| indicatorPlacement | `after`      | The position of the active tab indicator. Placement follows the `orientation` flow: `before` renders at the start edge (top or left), `after` at the end edge (bottom or right). |
+| Name               | Default      | Description                                                                                                                                                                   |
+| ------------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| palette            | `action`     | The color palette of the tabs                                                                                                                                                 |
+| orientation        | `horizontal` | The orientation of the group.                                                                                                                                                 |
+| indicatorPlacement | `end`        | The position of the active tab indicator. Placement follows the `orientation` flow: `start` renders at the start edge (top or left), `end` at the end edge (bottom or right). |
 
 The `Tabs.Root` component also accepts all the props of the [`TabsRoot` primitive props](https://ark-ui.com/react/docs/components/tabs#api-reference)
 
