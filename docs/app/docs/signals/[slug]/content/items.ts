@@ -23,6 +23,12 @@ export const items = [
     slug: 'data-fetching',
   },
   {
+    id: '0.4',
+    href: '/docs/signals/stores',
+    label: 'Stores',
+    slug: 'stores',
+  },
+  {
     id: '1.0',
     label: 'Primitives',
     href: '',
