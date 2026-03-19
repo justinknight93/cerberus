@@ -1,0 +1,68 @@
+---
+title: Creating Mutations
+description: Learn how to mutate cached queries in React.
+package: 'signals'
+---
+
+import { NoteAdmonition } from '@/app/components/Admonition'
+import CodePreview from '@/app/components/CodePreview'
+import { CodeSnippet } from '@/app/components/code-snippet'
+import { DEMOS } from '../components/fetching/static'
+
+<CodeSnippet snippet={DEMOS.mutationMeta} />
+
+## Usage
+
+`createMutation` allows you define a way to trigger a query-like function in
+response to an action that can perform mutations to the data.
+
+For the most part, if you have a signal-based query, there is no need for a mutation
+unless you are performing unique actions like form submissions.
+
+Additionally, mutations allow you to define a list of querys to invalidate after
+the mutation has been called.
+
+## Creating Mutations
+
+Mutations take a Promise to call when run and an optional options Object.
+
+<CodePreview {...DEMOS.mutation} />
+
+## Using Mutations
+
+`createMutation` only _defines_ a mutation and does not actually call it. To use the
+mutation you must pass the returned value into the `useMutation` hook.
+
+<CodeSnippet snippet={DEMOS.mutationUsageMeta} />
+<br />
+
+The value returned is an Obect containing the `mutate` method and the state of the
+mutation defined.
+
+## API
+
+`createMutation` accepts the following options:
+
+| Params  | Required | Description                                                     |
+| ------- | -------- | --------------------------------------------------------------- |
+| mutator | `true`   | The Promise-based function to call when the `mutate` is called. |
+| options | `false`  | An Object of conditional options for defined mutations.         |
+
+### Mutation Options
+
+The options Objecct contains the following optional properties:
+
+| Property     | Type                                              | Description                                                          |
+| ------------ | ------------------------------------------------- | -------------------------------------------------------------------- |
+| `invalidate` | `'all' \| ((data: T, variables: V) => unknown[])` | A list of `query.key` to invalidate once the mutation has completed. |
+| `onSuccess`  | `(data: T, variables: V) => void`                 | A callback to run when the mutation is successful.                   |
+| `onError`    | `(error: unknown, variables: V) => void`          | A callback to run when the mutation has errored.                     |
+
+### Return
+
+`createMutation` returns a `MutationTuple` to be passed into `useMutation`:
+
+| Index | Type                           | Description                              |
+| ----- | ------------------------------ | ---------------------------------------- |
+| 0     | `(variables: V) => Promise<T>` | A function used to trigger the mutation. |
+| 1     | `Accessor<MutationState<T>>`   | The state of the mutation.               |

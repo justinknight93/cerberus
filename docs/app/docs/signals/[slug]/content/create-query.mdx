@@ -1,0 +1,101 @@
+---
+title: Creating Queries
+description: Learn how to create cached queries in React.
+package: 'signals'
+---
+
+import { NoteAdmonition } from '@/app/components/Admonition'
+import CodePreview from '@/app/components/CodePreview'
+import { CodeSnippet } from '@/app/components/code-snippet'
+import { DEMOS } from '../components/fetching/static'
+
+<CodeSnippet snippet={DEMOS.queryMeta} />
+
+## Usage
+
+`createQuery` allows you define a fetcher that can be **auto-fetched** and **cached**
+when partnered with a signal Accessor. This creates a streamlined and high-performant
+way to fetch data within your application with less effort.
+
+The return value of a query is inteded to be used with `useQuery`.
+
+A query is just a fancy wrapper that subscribes to the signals Observer. This means
+that **it can be used for any scenario that is Promise-based** - not just data-fetching.
+
+See the [features table](#features-table) to understand how to best utilize queries
+for each scenario you may have.
+
+## Creating Queries
+
+Creating a query requires two things:
+
+1. A signal or signal-like accessor to subscribe to
+2. A Promise to call when activated
+
+### With Signals
+
+If you pass a signal `Accessor` as the first argument, the query will subscribe
+to that signal and **auto-call** the Promise provided when the signal value changes.
+Likewise, the result of the Promise will then be **cached** until invalidated via
+a mutation.
+
+When using a query bound to a signal **there is no need for creating mutations**.
+You simply update the signal it is subscribed to.
+
+**Caching lifecycle**:
+
+1. First call &rarr; fetch data and cache
+2. Any call with same signal value &rarr; return cached value
+3. Signal updates &rarr; fetch data and cache
+
+<CodePreview {...DEMOS.basic} />
+
+### Without Signals
+
+When you pass in an signal-like function that is not a true Accessor, **you forfeit
+any auto-fetching and caching features**. This means you must utilize mutations in
+order to update the state via the [`createMutation`](/docs/signals/create-mutation)
+APIs.
+
+<CodePreview {...DEMOS.mutation} />
+
+## Using Queries
+
+`createQuery` only _defines_ a query and does not actually call it. To use the
+query you must pass the returned value into the `useQuery` hook which reads the
+signal-based result.
+
+<CodeSnippet snippet={DEMOS.queryUsageMeta} />
+<br />
+
+The value returned is the result from calling the signal-tracked Accessor. This
+is equivalent to the return value from the `useRead` hook.
+
+## Features Table
+
+| Feature            | With Signal        | Without Signal     |
+| ------------------ | ------------------ | ------------------ |
+| auto-intial fetch  | :white_check_mark: | :white_check_mark: |
+| auto-refresh fetch | :white_check_mark: | :x:                |
+| caching            | :white_check_mark: | :x:                |
+| requires mutation  | :x:                | :white_check_mark: |
+
+## API
+
+`createQuery` accepts the following options:
+
+| Params                    | Required | Description                         |
+| ------------------------- | -------- | ----------------------------------- |
+| `Accessor<T> \| Function` | `true`   | The signal to subscribe to.         |
+| `Promise<any>`            | `true`   | The Promise to call when activated. |
+
+### Return
+
+`createQuery` returns the value of the Promise along with some additional properties:
+
+| Property      | Type   | Description                                                     |
+| ------------- | ------ | --------------------------------------------------------------- |
+| `key`         | `UUID` | A uniqe ID to be referenced in the mutation `invalidate` Array. |
+| `currentArgs` | `Args` | The args passed into `createQuery` stored in a reference.       |
+
+<NoteAdmonition description="The query.key is SHA generated from the contents of the query parameters. This means, if you have multiple signal-like queries, they should each have unique return values or else they will be synced together." />

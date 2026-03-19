@@ -4,8 +4,13 @@ import { memo } from 'react'
 import type { Accessor } from '../core/types'
 import { useRead } from './useRead.client'
 
-export interface ReactiveTextProps {
-  data: Accessor<string | number>
+export interface ReactiveTextProps<T> {
+  data: Accessor<T>
+}
+
+function ReactiveTextEl<T>({ data }: ReactiveTextProps<T>) {
+  const value = useRead(data)
+  return <>{value}</>
 }
 
 /**
@@ -22,7 +27,4 @@ export interface ReactiveTextProps {
  * ## Resources
  * [Cerberus Signals Documentation](https://cerberus.dev/docs)
  */
-export const ReactiveText = memo(({ data }: ReactiveTextProps) => {
-  const value = useRead(data)
-  return <>{value}</>
-})
+export const ReactiveText = memo(ReactiveTextEl)

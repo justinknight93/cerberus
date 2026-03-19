@@ -1,0 +1,43 @@
+---
+title: Global Stores
+description: Learn the fundamentals of creating signal-based stores in React Signals.
+package: 'signals'
+---
+
+import { NoteAdmonition } from '@/app/components/Admonition'
+import CodePreview from '@/app/components/CodePreview'
+import { CodeSnippet } from '@/app/components/code-snippet'
+import { DEMOS } from '../components/store/static'
+
+## Introduction
+
+As your app grows you may find the need for a single-source of truth for managing
+signals in a scalable way. In Cerberus Signals you can achieve this by creating
+a store.
+
+A store is simply a function that contains mutliple signals and actions which
+manage those signals. There are no restrictions for what a store is.
+
+**A store can use any primitive API in it**. This means the potential is limitless
+for whatever you wish to achieve in a high-performant way that doesn't involve
+React controlling the scenario.
+
+## Global Stores
+
+To create a global store, simply create a function that returns an Object. It can
+be anything and use any Cerberus Signals Primitive API within it.
+
+<CodePreview {...DEMOS.global} />
+
+## Contextual Stores
+
+To create a store that uses unique instances on a React app/component level, use
+the [`createStoreContext`](/docs/signals/create-store-context) API.
+
+<CodePreview {...DEMOS.basic} />
+
+## Reactivity
+
+Since stores are essentially a primitive that contain primitives, you will need
+to utilize the `ReactiveText` or `useRead` APIs in order to obtain the reactive
+values within the scope of any component.

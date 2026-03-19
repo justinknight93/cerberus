@@ -5,6 +5,8 @@ import { items as getStartedItems } from '@/app/docs/get-started/[slug]/content/
 import { items as componentsItems } from '@/app/docs/components/[slug]/content/items'
 import { items as stylingItems } from '@/app/docs/styling/[slug]/content/items'
 import { items as themingItems } from '@/app/docs/theming/[slug]/content/items'
+import { items as dataGridItems } from '@/app/docs/data-grid/[slug]/content/items'
+import { items as signalsItems } from '@/app/docs/signals/[slug]/content/items'
 
 interface DocumentSet {
   title: string
@@ -18,6 +20,8 @@ type Items =
   | typeof componentsItems
   | typeof stylingItems
   | typeof themingItems
+  | typeof dataGridItems
+  | typeof signalsItems
 
 export const GET = async () => {
   const documentSets: DocumentSet[] = [
@@ -34,6 +38,16 @@ export const GET = async () => {
           title: 'Components',
           type: 'sub-section',
           children: formatItemsToDocSet(componentsItems),
+        },
+        {
+          title: 'Data Grid',
+          type: 'sub-section',
+          children: formatItemsToDocSet(dataGridItems),
+        },
+        {
+          title: 'Signals',
+          type: 'sub-section',
+          children: formatItemsToDocSet(signalsItems),
         },
         {
           title: 'Styling',
@@ -82,26 +96,18 @@ export const GET = async () => {
       .map((set) => {
         if (set.type === 'section') {
           const sectionContent = `## ${set.title}`
-          const childrenContent = set.children
-            ? generateContent(set.children)
-            : ''
+          const childrenContent = set.children ? generateContent(set.children) : ''
           return `${sectionContent}\n${childrenContent}`
         }
 
         if (set.type === 'sub-section') {
           const sectionContent = `### ${set.title}`
-          const childrenContent = set.children
-            ? generateContent(set.children)
-            : ''
+          const childrenContent = set.children ? generateContent(set.children) : ''
           return `${sectionContent}\n${childrenContent}`
         }
 
-        const childrenContent = set.children
-          ? generateContent(set.children)
-          : ''
-        const currentContent = set.href
-          ? `- [${set.title}](${createGithubUrl(set.href)})`
-          : ''
+        const childrenContent = set.children ? generateContent(set.children) : ''
+        const currentContent = set.href ? `- [${set.title}](${createGithubUrl(set.href)})` : ''
 
         return `${currentContent}\n${childrenContent}`.trim()
       })
@@ -109,10 +115,7 @@ export const GET = async () => {
       .join('\n')
   }
 
-  const content = TEMPLATE.replace(
-    '%DOCUMENT_SETS%',
-    generateContent(documentSets),
-  )
+  const content = TEMPLATE.replace('%DOCUMENT_SETS%', generateContent(documentSets))
 
   return new Response(content, {
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },

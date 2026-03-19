@@ -1,0 +1,81 @@
+---
+title: Creating Signals
+description: Learn how to create fine-grained signals in React.
+package: 'signals'
+---
+
+import { NoteAdmonition } from '@/app/components/Admonition'
+import CodePreview from '@/app/components/CodePreview'
+import { CodeSnippet } from '@/app/components/code-snippet'
+import { DEMOS } from '../components/signal/static'
+
+<CodeSnippet snippet={DEMOS.meta} />
+
+## Usage
+
+When you want to create a signal **outside of a component** context. This can be
+used globally, in a store, or any other way your purpose needs.
+
+There are two ways to read a global signal within a component:
+
+1. `ReactiveText` (recommended) for fine-grained reactivity
+2. `useRead` hook for manual consumption
+
+## Basic State
+
+`createSignal` works just like `useSignal` on a non-component scale.
+
+<CodePreview {...DEMOS.basic} />
+
+## Reading State
+
+The easiest way to read the state of primitive-based signal is the `ReactiveText`
+component which provided fine-grained reactivity control.
+
+When you don't care about fine-grained reactivity, you can use the `useRead` hook.
+
+<CodePreview {...DEMOS.read} />
+
+<NoteAdmonition description="We always recommend utilizing ReactiveText over useRead to provide better control over React rendering in addition to a cleaner DX." />
+
+## Setting State
+
+With Cerberus Signals, how you set the state no longer matters. You are free to
+use mutation or immutability. Both results will yield the same high performant and
+reliable reactivity.
+
+In this example we utilize the `createComputed` primitive to create a reactive
+signal which provides a computational value. This is similar to the native React
+`useMemo` hook.
+
+<CodePreview {...DEMOS.state} />
+
+<NoteAdmonition description="Notice how the createComputed primitive doesn't require a dependency Array? In Cerberus Signals, we auto-detect signals so you don't have to waste time declaring." />
+
+## Stores
+
+You can create global stores to read and manage state across your entire application,
+or simply devote to a single feature (this is how the [Data Grid](/docs/data-grid/overview)
+is designed).
+
+This allows you to have an "multi-signal" and action based solution that will
+both improve React rendering performance and code scalability.
+
+<CodePreview {...DEMOS.store} />
+
+## API
+
+`createSignal` accepts the following options:
+
+| Params         | Required | Description                                |
+| -------------- | -------- | ------------------------------------------ |
+| `initialValue` | `false`  | The initial value to set for the accessor. |
+
+### Return
+
+`createSignal` returns a `SignalTuple<T>` Array of the following values:
+
+| Index | Type          | Description                                           |
+| ----- | ------------- | ----------------------------------------------------- |
+| 0     | `Accessor<T>` | A function that returns the latest value when called. |
+| 1     | `Setter<T>`   | A function to update the signal value.                |

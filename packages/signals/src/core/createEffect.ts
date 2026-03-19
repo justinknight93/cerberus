@@ -18,6 +18,10 @@ import { pushObserver, popObserver } from './scheduler'
  * |------------|-------------|
  * | `fn`       |  The effect function to run when signals change. |
  *
+ * ### Returns
+ *
+ * A cleanup function that can be called to cancel the subscription.
+ *
  * ## Resources
  * [Cerberus Signals Docs](https://cerberus.digitalu.design/docs/signals/overview)
  */
