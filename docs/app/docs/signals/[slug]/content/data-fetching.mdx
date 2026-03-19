@@ -1,0 +1,66 @@
+---
+title: Signals Data Fetching
+description: Learn the fundamentals of fetching data using Signals.
+package: 'signals'
+---
+
+import { NoteAdmonition } from '@/app/components/Admonition'
+import CodePreview from '@/app/components/CodePreview'
+import { CodeSnippet } from '@/app/components/code-snippet'
+import { DEMOS } from '../components/fetching/static'
+
+## Introduction
+
+Fetching data from a remote API or database is a core task for most applications.
+Cerberus Signals provide foundational tools like the [`createQuery`](/docs/signals/create-query)
+primitive and [`createMutation`](/docs/signals/create-mutation) to manage
+asynchronous data.
+
+Fetching data with signals will **automatically cache** the response until it is
+invalidated through a **mutation**.
+
+## Fetching Data
+
+To fetch (and cache) data using signals, simply follow two steps:
+
+1. Define a query
+2. Trigger the query via the `useQuery` hook in your component
+
+<CodePreview {...DEMOS.basic} />
+<br />
+
+In this example there are a few things happening:
+
+1. The "backend API"
+2. The query
+3. The component using the query
+4. An action that updates the global `currentUser` state
+
+When you pass an _Accessor_ into the query definition, it will auto-fetch, invalidate,
+and cache the result when the signal Accessor updates. This means, with this design
+**mutations are not neccessary.**
+
+<NoteAdmonition description="Refresh the page to see the cached response. This happens because we are passing a signal accessor as the first value." />
+
+## Mutating Data
+
+Sometimes, you may have a complex scenario where that prevents you from using
+a signal utilized as the query "data store". **This is where mutations come in**.
+
+In order to mutate non-signal based data, follow these steps:
+
+1. Init the query with a non-accessor function
+2. Define the mutation. _Optional: pass the query.key into invalidate to clear the cache for that query._
+3. Use the mution action
+
+<CodePreview {...DEMOS.mutation} />
+<br />
+
+Here's what's happening in this demo:
+
+1. A non-signal based store (e.g. database)
+2. A query that does not watch an Accessor signal
+3. A mutation that updates the "db" and invalidates the user query cache
+4. A button calling the `mutate` action to trigger the mutation callback and invalidation
+
+<NoteAdmonition description="Anytime a non-signal accessor is passed to a query, it bypasses the auto functionality and converts it to only be manually updated via mutations." />

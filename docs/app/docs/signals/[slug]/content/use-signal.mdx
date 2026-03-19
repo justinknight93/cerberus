@@ -1,0 +1,70 @@
+---
+title: Using Signals
+description: Learn how to use fine-grained signals in React.
+package: 'signals'
+---
+
+import { NoteAdmonition } from '@/app/components/Admonition'
+import CodePreview from '@/app/components/CodePreview'
+import { CodeSnippet } from '@/app/components/code-snippet'
+import { DEMOS } from '../components/signal/static'
+
+<CodeSnippet snippet={DEMOS.hookMeta} />
+
+## Usage
+
+When you want to create a signal **within a component** context.
+
+There are two ways to read a global signal within a component:
+
+1. `ReactiveText` (recommended) for fine-grained reactivity
+2. Calling the accessor within the JSX
+
+## Basic State
+
+`useSignal` works just like `createSignal` on a local component scale.
+
+<CodePreview {...DEMOS.use} />
+
+## Reading State
+
+There are two ways to read the signal value based on your preferred method:
+
+1. Using the first value: the latest accessor result
+2. Using the third value: the pure accessor function
+
+Both options are valid and more performant than native React state. However, only
+the _pure accessor_ can be passed into `ReactiveText`.
+
+<CodePreview {...DEMOS.use} />
+
+## Setting State
+
+With Cerberus Signals, how you set the state no longer matters. You are free to
+use mutation or immutability. Both results will yield the same high performant and
+reliable reactivity.
+
+The second value of the Tuple is the `Setter` function.
+
+The setter API is the exact same as the `createSignal` Setter and accepts any type
+of setting value or callback.
+
+<CodePreview {...DEMOS.use} />
+
+## API
+
+`useSignal` accepts the following options:
+
+| Params         | Required | Description                                |
+| -------------- | -------- | ------------------------------------------ |
+| `initialValue` | `false`  | The initial value to set for the accessor. |
+
+### Return
+
+`useSignal` returns a `SignalTuple<T>` Array of the following values:
+
+| Index | Type          | Description                                           |
+| ----- | ------------- | ----------------------------------------------------- |
+| 0     | `T`           | The latest value of the accessor.                     |
+| 1     | `Setter<T>`   | A function to update the signal value.                |
+| 2     | `Accessor<T>` | A function that returns the latest value when called. |

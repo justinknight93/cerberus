@@ -40,7 +40,7 @@ export function Button(props: ButtonProps) {
         {...nativeProps}
         data-scope="button"
         data-part="root"
-        disabled={pending || props.disabled}
+        disabled={pending || nativeProps.disabled}
       />
     </ButtonContext.Provider>
   )

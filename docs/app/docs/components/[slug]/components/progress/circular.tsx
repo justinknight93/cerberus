@@ -14,12 +14,7 @@ function NotStartedText() {
 export function CircularPreview() {
   return (
     <HStack>
-      <CircularProgress
-        id="0"
-        defaultValue={0}
-        label={<NotStartedText />}
-        hideValueText
-      />
+      <CircularProgress id="0" defaultValue={0} label={<NotStartedText />} hideValueText />
       <CircularProgress id="25" defaultValue={25} />
       <CircularProgress id="50" defaultValue={50} />
       <CircularProgress id="75" defaultValue={75} />
@@ -34,12 +29,7 @@ export function SizesPreview() {
       <CircularProgress id="25" defaultValue={25} size="xs" />
       <CircularProgress id="50" defaultValue={50} size="sm" />
       <CircularProgress id="75" defaultValue={75} size="md" />
-      <CircularProgress
-        id="complete"
-        label="complete"
-        defaultValue={100}
-        size="lg"
-      />
+      <CircularProgress id="complete" label="complete" defaultValue={100} size="lg" />
     </HStack>
   )
 }
@@ -47,11 +37,7 @@ export function SizesPreview() {
 export function HideValueTextPreview() {
   return (
     <HStack justify="center" w="1/2">
-      <CircularProgress
-        defaultValue={0}
-        label={<NotStartedText />}
-        hideValueText
-      />
+      <CircularProgress defaultValue={0} label={<NotStartedText />} hideValueText />
     </HStack>
   )
 }

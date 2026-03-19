@@ -2,7 +2,14 @@
 
 import { useRead } from './useRead.client'
 import type { Accessor } from '../core/types'
-import { type MutationState } from '../core/createMutation'
+import { type MutationStatus, type MutationState } from '../core/createMutation'
+
+type MutationReturn<T, V> = {
+  status: MutationStatus
+  data: T | undefined
+  error: unknown | undefined
+  mutate: (variables: V) => Promise<T>
+}
 
 /**
  * ## Creating Mutations in Components
@@ -32,11 +39,8 @@ import { type MutationState } from '../core/createMutation'
  * - [useRead](https://cerberus.digitalu.design/docs/signals/use-read)
  */
 export function useMutation<T, V>(
-  mutationTuple: [
-    mutate: (variables: V) => Promise<T>,
-    getState: Accessor<MutationState<T>>,
-  ],
-) {
+  mutationTuple: [mutate: (variables: V) => Promise<T>, getState: Accessor<MutationState<T>>],
+): MutationReturn<T, V> {
   const [mutate, getState] = mutationTuple
   const state = useRead(getState)
 
