@@ -1,0 +1,56 @@
+---
+title: Using Mutations
+description: Learn how to use defined mutations in React.
+package: 'signals'
+---
+
+import { NoteAdmonition } from '@/app/components/Admonition'
+import CodePreview from '@/app/components/CodePreview'
+import { CodeSnippet } from '@/app/components/code-snippet'
+import { DEMOS } from '../components/fetching/static'
+
+<CodeSnippet snippet={DEMOS.useMutationMeta} />
+
+## Usage
+
+`useMudation` allows you call a defined mutation (via [`createMutation`](/docs/signals/create-mutation))
+to trigger and action for usage within your React component.
+
+Mutations's have built in support for `Suspense` and Error Boundaries with no extra effort.
+
+## Using Mutations
+
+To use a mutation call the `mutate` method from the return Object.
+
+<CodePreview {...DEMOS.mutation} />
+
+## Data
+
+The `data` property is a mirrored store of the query associated with the mutation.
+
+<CodePreview {...DEMOS.data} />
+
+## Status
+
+The `status` property is the state associated with the mutation when triggered.
+
+<CodePreview {...DEMOS.status} />
+
+## API
+
+`useMutation` accepts the following options:
+
+| Params          | Required | Description                         |
+| --------------- | -------- | ----------------------------------- |
+| `MutationTuple` | `true`   | The result of the mutation defined. |
+
+### Return
+
+`useMutation` returns and Object with the following options:
+
+| Property | Type                           | Description                                         |
+| -------- | ------------------------------ | --------------------------------------------------- |
+| `mutate` | `(variables: V) => Promise<T>` | A function that calls the defined mutation Promise. |
+| `data`   | `T \| undefined`               | The cached state of the query associated with it.   |
+| `error`  | `unknown \| undefined`         | The error thrown from the mutation.                 |
+| `status` | `MutationStatus`               | The Promise-based status state of the mutation.     |

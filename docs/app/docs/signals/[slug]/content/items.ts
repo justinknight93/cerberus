@@ -70,12 +70,24 @@ export const items = [
   },
   {
     id: '2.1',
+    href: '/docs/signals/use-query',
+    label: 'useQuery',
+    slug: 'use-query',
+  },
+  {
+    id: '2.2',
+    href: '/docs/signals/use-mutation',
+    label: 'useMutation',
+    slug: 'use-mutation',
+  },
+  {
+    id: '2.3',
     href: '/docs/signals/use-read',
     label: 'useRead',
     slug: 'use-read',
   },
   {
-    id: '2.2',
+    id: '2.4',
     href: '/docs/signals/use-signal',
     label: 'useSignal',
     slug: 'use-signal',
