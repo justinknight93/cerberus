@@ -59,6 +59,12 @@ export const items = [
   },
   {
     id: '1.6',
+    href: '/docs/signals/create-store-context',
+    label: 'createStoreContext',
+    slug: 'create-store-context',
+  },
+  {
+    id: '1.7',
     href: '/docs/signals/batch',
     label: 'batch',
     slug: 'batch',
