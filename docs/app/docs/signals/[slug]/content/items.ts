@@ -53,6 +53,12 @@ export const items = [
   },
   {
     id: '1.5',
+    href: '/docs/signals/create-effect',
+    label: 'createEffect',
+    slug: 'create-effect',
+  },
+  {
+    id: '1.6',
     href: '/docs/signals/batch',
     label: 'batch',
     slug: 'batch',
