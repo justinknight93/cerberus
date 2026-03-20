@@ -1,5 +1,5 @@
 import type { Observable, Accessor, Setter, SignalTuple } from './types'
-import { activeObserver, batchDepth, batchedObservers } from './scheduler'
+import { activeObserver, schedule, batch } from './scheduler'
 
 /**
  * ## Create Signal
@@ -39,31 +39,32 @@ import { activeObserver, batchDepth, batchedObservers } from './scheduler'
  */
 export function createSignal<T>(initialValue: T): SignalTuple<T> {
   let value = initialValue
-  const node: Observable = { observers: new Set() }
+  const node: Observable = { observers: new Set(), depth: 0 }
 
   const getter: Accessor<T> = () => {
     if (activeObserver) {
       node.observers.add(activeObserver)
       activeObserver.dependencies.add(node)
+      // Ensure the observer evaluating this signal is strictly deeper in the graph
+      if (activeObserver.depth <= node.depth) {
+        activeObserver.depth = node.depth + 1
+      }
     }
     return value
   }
 
   const setter: Setter<T> = (nextValue): void => {
-    const newValue =
-      typeof nextValue === 'function'
-        ? (nextValue as Setter<T>)(value)
-        : nextValue
+    const newValue = typeof nextValue === 'function' ? (nextValue as Setter<T>)(value) : nextValue
 
     if (newValue !== value) {
       value = newValue as T
       const currentObservers = Array.from(node.observers)
-
-      if (batchDepth > 0) {
-        for (const observer of currentObservers) batchedObservers.add(observer)
-      } else {
-        for (const observer of currentObservers) observer.execute()
-      }
+      // --- SCHEDULER DELEGATION UPDATE ---
+      batch(() => {
+        for (const observer of currentObservers) {
+          schedule(observer)
+        }
+      })
     }
   }
 
