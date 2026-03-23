@@ -8,7 +8,7 @@ import { useFakeQuery } from '../quick-start/data'
 
 export function BasicDemo() {
   // Normally this would be from useQuery or a server-side API call
-  const data = useFakeQuery(100)
+  const data = useFakeQuery(10)
 
   return (
     <Stack direction="column" gap="md" h="25rem" mb="md" w="90%">

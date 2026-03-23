@@ -3,7 +3,7 @@
 import { Show } from '@cerberus-design/react'
 import { createEffect, useSignal } from '@cerberus-design/signals'
 import { memo, useEffect, useMemo, useRef } from 'react'
-import { HStack, Stack } from 'styled-system/jsx'
+import { Grid, GridItem, Stack } from 'styled-system/jsx'
 import { PARTS, SCOPE } from '../const'
 import { DataGridProvider } from '../context.client'
 import { createGridStore } from '../store'
@@ -67,44 +67,54 @@ function DataGridEl<TData>(props: GridOptions<TData>) {
   }, [store, setReady])
 
   return (
-    <DataGridProvider createStore={() => store}>
-      <Show when={props.toolbar}>
-        {() => (
-          <HStack data-scope={SCOPE} data-part={PARTS.TOOLBAR} w="full">
-            {props.toolbar}
-          </HStack>
-        )}
-      </Show>
+    <Grid
+      gap={{
+        base: 'sm',
+        md: 'md',
+      }}
+      gridTemplateRows="repeat(3, 1fr)"
+      gridTemplateColumns="repeat(12, 1fr)"
+      h="full"
+      w="full"
+    >
+      <DataGridProvider createStore={() => store}>
+        <Show when={props.toolbar}>
+          {() => (
+            <GridItem data-scope={SCOPE} data-part={PARTS.TOOLBAR} colSpan={12} w="full">
+              {props.toolbar}
+            </GridItem>
+          )}
+        </Show>
 
-      <Stack
-        data-scope={SCOPE}
-        data-part={PARTS.ROOT}
-        dir="columns"
-        maxH="inherit"
-        minH="inherit"
-        gap="0"
-        h="full"
-        bgColor="page.surface.100/55"
-        border="1px solid"
-        borderColor="page.border.initial"
-        rounded="lg"
-        overflow="hidden"
-        w="full"
-        ref={rootRef}
-      >
-        <Show when={ready}>{() => <GridViewport />}</Show>
+        <Stack
+          data-scope={SCOPE}
+          data-part={PARTS.ROOT}
+          dir="columns"
+          maxH="inherit"
+          minH="inherit"
+          gap="0"
+          h="full"
+          bgColor="page.surface.100/55"
+          border="1px solid"
+          borderColor="page.border.initial"
+          rounded="lg"
+          overflow="hidden"
+          w="full"
+          ref={rootRef}
+        >
+          <Show when={ready}>{() => <GridViewport />}</Show>
+          <GridPagination />
+        </Stack>
 
-        <GridPagination />
-      </Stack>
-
-      <Show when={props.footer}>
-        {() => (
-          <HStack data-scope={SCOPE} data-part={PARTS.FOOTER} w="full">
-            {props.footer}
-          </HStack>
-        )}
-      </Show>
-    </DataGridProvider>
+        <Show when={props.footer}>
+          {() => (
+            <GridItem data-scope={SCOPE} data-part={PARTS.FOOTER} colSpan={12} w="full">
+              {props.footer}
+            </GridItem>
+          )}
+        </Show>
+      </DataGridProvider>
+    </Grid>
   )
 }
 

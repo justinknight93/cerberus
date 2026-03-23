@@ -54,10 +54,7 @@ export type ColumnDef<TData, TKey extends keyof TData = keyof TData> = {
   /**
    * A helper to access and manage the preferred value of the cell.
    */
-  accessor:
-    | DisplayColAccessor
-    | AccessorAccessor<TData, TKey>
-    | AccessorFn<TData>
+  accessor: DisplayColAccessor | AccessorAccessor<TData, TKey> | AccessorFn<TData>
   /**
    * Strictly define the cell width. Expects a pixel-based number.
    * @default 150px
@@ -193,9 +190,7 @@ export type ColumnFeatures<TData, TKey extends keyof TData> = {
   /**
    * Allow the column to be sorted and the rules to use.
    */
-  sort?:
-    | (boolean & EnforceNoProperties<SortOptions<TData, TKey>>)
-    | SortOptions<TData, TKey>
+  sort?: (boolean & EnforceNoProperties<SortOptions<TData, TKey>>) | SortOptions<TData, TKey>
   /**
    * Allow the column to be filtered and the rules to use.
    */
@@ -225,9 +220,7 @@ export type SortOptions<TData, TKey extends keyof TData> = {
 export type ColCell<TData> = (props: { row: TData; value: any }) => ReactNode
 
 export type DisplayColAccessor = () => undefined
-export type AccessorAccessor<TData, TKey extends keyof TData> = (
-  row: TData,
-) => TData[TKey]
+export type AccessorAccessor<TData, TKey extends keyof TData> = (row: TData) => TData[TKey]
 export type AccessorFn<TData> = (row: TData) => ReactNode
 
 // --- Features ---
