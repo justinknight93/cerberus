@@ -1,8 +1,8 @@
 {
   "name": "tests",
   "version": "0.0.0",
-  "description": "The tests for the repository.",
   "private": true,
+  "description": "The tests for the repository.",
   "scripts": {
     "lint:ts": "tsc --noEmit",
     "test": "bun test",
@@ -20,7 +20,7 @@
     "@cerberus/preset-elysium-theme": "workspace:*",
     "@cerberus/tokens": "workspace:*",
     "@happy-dom/global-registrator": "^20.8.3",
-    "@pandacss/types": "^1.9.0",
+    "@pandacss/types": "^1.9.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
     "@testing-library/user-event": "^14.6.1",
