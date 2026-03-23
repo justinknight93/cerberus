@@ -95,15 +95,15 @@ function DataGridEl<TData>(props: GridOptions<TData>) {
         <Show when={ready}>{() => <GridViewport />}</Show>
 
         <GridPagination />
-
-        <Show when={props.footer}>
-          {() => (
-            <HStack data-scope={SCOPE} data-part={PARTS.FOOTER} w="full">
-              {props.footer}
-            </HStack>
-          )}
-        </Show>
       </Stack>
+
+      <Show when={props.footer}>
+        {() => (
+          <HStack data-scope={SCOPE} data-part={PARTS.FOOTER} w="full">
+            {props.footer}
+          </HStack>
+        )}
+      </Show>
     </DataGridProvider>
   )
 }
