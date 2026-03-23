@@ -11,12 +11,6 @@ import type { GridOptions } from '../types'
 import { GridViewport } from './grid.client'
 import { GridPagination } from './pagination.client'
 
-// Features
-// TODO: Figure out filtering (requires popover API)
-
-// Layout
-// TODO: Figure out footer
-
 function DataGridEl<TData>(props: GridOptions<TData>) {
   const { data } = props
 
@@ -100,6 +94,8 @@ function DataGridEl<TData>(props: GridOptions<TData>) {
       >
         <Show when={ready}>{() => <GridViewport />}</Show>
 
+        <GridPagination />
+
         <Show when={props.footer}>
           {() => (
             <HStack data-scope={SCOPE} data-part={PARTS.FOOTER} w="full">
@@ -107,8 +103,6 @@ function DataGridEl<TData>(props: GridOptions<TData>) {
             </HStack>
           )}
         </Show>
-
-        <GridPagination />
       </Stack>
     </DataGridProvider>
   )
