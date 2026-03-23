@@ -43,4 +43,28 @@ describe('DataGrid', () => {
     expect(screen.getByText('Third')).toBeInTheDocument()
     expect(screen.getByText('three')).toBeInTheDocument()
   })
+
+  test('renders a toolbar', () => {
+    function Toolbar() {
+      return <div>This is a toolbar</div>
+    }
+    render(
+      <CerberusProvider>
+        <DataGrid data={data} columns={columns} toolbar={<Toolbar />} />
+      </CerberusProvider>,
+    )
+    expect(screen.getByText('This is a toolbar')).toBeInTheDocument()
+  })
+
+  test('renders footer', () => {
+    function Footer() {
+      return <div>This is a footer</div>
+    }
+    render(
+      <CerberusProvider>
+        <DataGrid data={data} columns={columns} footer={<Footer />} />
+      </CerberusProvider>,
+    )
+    expect(screen.getByText('This is a footer')).toBeInTheDocument()
+  })
 })

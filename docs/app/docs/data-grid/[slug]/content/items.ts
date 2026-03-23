@@ -47,12 +47,24 @@ export const items = [
   },
   {
     id: '1.3',
+    href: '/docs/data-grid/slots',
+    label: 'Slots',
+    slug: 'slots',
+  },
+  {
+    id: '1.4',
     href: '/docs/data-grid/toolbar',
     label: 'Toolbar',
     slug: 'toolbar',
   },
   {
-    id: '1.4',
+    id: '1.5',
+    href: '/docs/data-grid/footer',
+    label: 'Footer',
+    slug: 'footer',
+  },
+  {
+    id: '1.6',
     href: '/docs/data-grid/pagination',
     label: 'Pagination',
     slug: 'pagination',
