@@ -130,7 +130,11 @@ export function CustomTabsPreview() {
 export function VerticalTabsPreview() {
   return (
     <Box w="full">
-      <Tabs.Root defaultValue="overview" orientation="vertical" indicatorPlacement="start">
+      <Tabs.Root
+        defaultValue="overview"
+        orientation="vertical"
+        indicatorPlacement="start"
+      >
         <Tabs.List>
           <Tabs.Tab value="overview">Overview</Tabs.Tab>
           <Tabs.Tab value="features">Features</Tabs.Tab>
@@ -142,4 +146,11 @@ export function VerticalTabsPreview() {
       </Tabs.Root>
     </Box>
   )
+}
+
+export const DEMOS = {
+  vertical: {
+    id: 'tabs.vertical',
+    preview: <VerticalTabsPreview />,
+  },
 }

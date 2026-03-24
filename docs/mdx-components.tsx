@@ -252,6 +252,25 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...props}
       />
     ),
+    blockquote: (props) => (
+      <blockquote
+        className={css({
+          bgColor: 'page.surface.100',
+          color: 'page.text.100',
+          mb: 'lg',
+          px: 'md',
+          py: 'md',
+          borderLeft: '4px solid',
+          borderColor: 'page.text.100/75',
+          borderTopRightRadius: '4px',
+          borderBottomRightRadius: '4px',
+          '& :is(p)': {
+            pb: 'initial',
+          },
+        })}
+        {...props}
+      />
+    ),
     ...components,
   }
 }
