@@ -6,6 +6,7 @@
   "scripts": {
     "lint:ts": "tsc --noEmit",
     "test": "bun test",
+    "test:bench": "bun run ./signals/scheduler.bench.ts",
     "test:ci": "bun test --coverage"
   },
   "devDependencies": {
@@ -25,6 +26,7 @@
     "@testing-library/react": "^16.3.1",
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.2.14",
+    "mitata": "^1.0.34",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "styled-system": "workspace:*"

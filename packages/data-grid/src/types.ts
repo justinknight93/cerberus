@@ -41,6 +41,10 @@ export interface GridOptions<TData> {
    * **default**: 'md'.
    */
   rowSize?: RowSizeOptions
+  /**
+   * The customizable colors for the Data Grid.
+   */
+  theme?: ThemeOptions
 }
 
 // --- Column Types ---
@@ -54,10 +58,7 @@ export type ColumnDef<TData, TKey extends keyof TData = keyof TData> = {
   /**
    * A helper to access and manage the preferred value of the cell.
    */
-  accessor:
-    | DisplayColAccessor
-    | AccessorAccessor<TData, TKey>
-    | AccessorFn<TData>
+  accessor: DisplayColAccessor | AccessorAccessor<TData, TKey> | AccessorFn<TData>
   /**
    * Strictly define the cell width. Expects a pixel-based number.
    * @default 150px
@@ -193,9 +194,7 @@ export type ColumnFeatures<TData, TKey extends keyof TData> = {
   /**
    * Allow the column to be sorted and the rules to use.
    */
-  sort?:
-    | (boolean & EnforceNoProperties<SortOptions<TData, TKey>>)
-    | SortOptions<TData, TKey>
+  sort?: (boolean & EnforceNoProperties<SortOptions<TData, TKey>>) | SortOptions<TData, TKey>
   /**
    * Allow the column to be filtered and the rules to use.
    */
@@ -225,9 +224,7 @@ export type SortOptions<TData, TKey extends keyof TData> = {
 export type ColCell<TData> = (props: { row: TData; value: any }) => ReactNode
 
 export type DisplayColAccessor = () => undefined
-export type AccessorAccessor<TData, TKey extends keyof TData> = (
-  row: TData,
-) => TData[TKey]
+export type AccessorAccessor<TData, TKey extends keyof TData> = (row: TData) => TData[TKey]
 export type AccessorFn<TData> = (row: TData) => ReactNode
 
 // --- Features ---
@@ -235,3 +232,47 @@ export type AccessorFn<TData> = (row: TData) => ReactNode
 export type Comparator<TValue> = (a: TValue, b: TValue) => number
 export type SortDirection = 'asc' | 'desc' | null
 export type PinnedState = 'left' | 'right' | undefined | boolean
+
+export type ThemeOptions = {
+  /**
+   * The external border of the Data Grid container.
+   * The default is `page.border.initial`.
+   */
+  borderColor?: string
+  /**
+   * The border width and style of the Data Grid component. Default is `1px solid`.
+   */
+  border?: string
+  /**
+   * The border radius of the Data Grid component. Default is `lg`.
+   */
+  rounded?: string
+  /**
+   * The background color of the row. Default is `page.surface.100`.
+   */
+  rowBgColor?: string
+  /**
+   * The background color of the row on hover. Default is `page.surface.200`.
+   */
+  rowHoverBgColor?: string
+  /**
+   * The background color of the even rows. Default is `page.surface.initial`.
+   */
+  rowEvenBgColor?: string
+  /**
+   * The background color of the head cell. Default is `page.bg.initial`.
+   */
+  headCellBgColor?: string
+  /**
+   * The border color for the bottom border of the head cell. Default is `page.border.200`.
+   */
+  headCellBorderBottomColor?: string
+  /**
+   * The border color of the grid cell. Default is `page.border.200`.
+   */
+  gridCellBorderColor?: string
+  /**
+   * The border color of the pinned grid cell. Default is `page.border.200`.
+   */
+  gridCellPinnedBorderColor?: string
+}

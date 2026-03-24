@@ -1,5 +1,5 @@
 import type { Observable, Observer, Accessor } from './types'
-import { activeObserver, pushObserver, popObserver } from './scheduler'
+import { activeObserver, pushObserver, popObserver, schedule } from './scheduler'
 
 /**
  * ## Creating a Computed Value
@@ -29,12 +29,13 @@ export function createComputed<T>(fn: () => T): Accessor<T> {
   const node: Observable & Observer = {
     observers: new Set(),
     dependencies: new Set(),
+    depth: 0,
     execute() {
       if (isStale) return
       isStale = true
       const currentObservers = Array.from(node.observers)
       for (const observer of currentObservers) {
-        observer.execute()
+        schedule(observer)
       }
     },
     cleanup() {
@@ -47,16 +48,22 @@ export function createComputed<T>(fn: () => T): Accessor<T> {
     if (activeObserver) {
       node.observers.add(activeObserver)
       activeObserver.dependencies.add(node)
+      // --- TOPOLOGICAL SORT UPDATE (Observable side) ---
+      if (activeObserver.depth <= node.depth) {
+        activeObserver.depth = node.depth + 1
+      }
     }
 
     if (isStale) {
       node.cleanup()
+      // --- TOPOLOGICAL SORT UPDATE (Observer side) ---
+      node.depth = 0
       pushObserver(node)
       value = fn()
       popObserver()
+
       isStale = false
     }
-
     return value
   }
 

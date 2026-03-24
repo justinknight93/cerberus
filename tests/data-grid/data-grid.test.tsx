@@ -43,4 +43,42 @@ describe('DataGrid', () => {
     expect(screen.getByText('Third')).toBeInTheDocument()
     expect(screen.getByText('three')).toBeInTheDocument()
   })
+
+  test('renders a toolbar', () => {
+    function Toolbar() {
+      return <div>This is a toolbar</div>
+    }
+    render(
+      <CerberusProvider>
+        <DataGrid data={data} columns={columns} toolbar={<Toolbar />} />
+      </CerberusProvider>,
+    )
+    expect(screen.getByText('This is a toolbar')).toBeInTheDocument()
+  })
+
+  test('renders footer', () => {
+    function Footer() {
+      return <div>This is a footer</div>
+    }
+    render(
+      <CerberusProvider>
+        <DataGrid data={data} columns={columns} footer={<Footer />} />
+      </CerberusProvider>,
+    )
+    expect(screen.getByText('This is a footer')).toBeInTheDocument()
+  })
+
+  test('renders with custom theme variables', () => {
+    const theme = {
+      headCellBgColor: 'black',
+      gridCellPinnedBorderColor: 'black',
+    }
+    render(
+      <CerberusProvider>
+        <DataGrid data={data} columns={columns} theme={theme} />
+      </CerberusProvider>,
+    )
+    // Not sure the best way to test this
+    expect(screen.getByText('Display')).toBeInTheDocument()
+  })
 })
