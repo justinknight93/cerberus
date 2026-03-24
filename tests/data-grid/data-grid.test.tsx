@@ -67,4 +67,18 @@ describe('DataGrid', () => {
     )
     expect(screen.getByText('This is a footer')).toBeInTheDocument()
   })
+
+  test('renders with custom theme variables', () => {
+    const theme = {
+      headCellBgColor: 'black',
+      gridCellPinnedBorderColor: 'black',
+    }
+    render(
+      <CerberusProvider>
+        <DataGrid data={data} columns={columns} theme={theme} />
+      </CerberusProvider>,
+    )
+    // Not sure the best way to test this
+    expect(screen.getByText('Display')).toBeInTheDocument()
+  })
 })

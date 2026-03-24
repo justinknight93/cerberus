@@ -141,9 +141,9 @@ export const GridHeaderCell = memo(function GridHeaderCell<TData>(
       data-state={pinnedState}
       data-col={column.id}
       {...pinnedAttr}
-      bgColor="page.bg.initial"
+      bgColor="var(--head-cell-bg-color)"
       borderBottom="1px solid"
-      borderBottomColor="page.border.200"
+      borderBottomColor="var(--head-cell-border-bottom-color)"
       h="full"
       justify="space-between"
       pos="relative"
@@ -247,7 +247,7 @@ export const GridCell = memo(function GridCell<TData>(props: GridCellProps<TData
       data-state={pinnedState}
       {...pinnedAttr}
       bgColor="inherit"
-      borderColor="page.border.200"
+      borderColor="var(--grid-cell-border-color)"
       h="full"
       pos="relative"
       px="md"
@@ -259,11 +259,11 @@ export const GridCell = memo(function GridCell<TData>(props: GridCellProps<TData
         zIndex: 20,
       }}
       _leftPinned={{
-        borderRightColor: 'page.border.200',
+        borderRightColor: 'var(--grid-cell-pinned-border-color)',
         borderRight: '1px solid',
       }}
       _rightPinned={{
-        borderLeftColor: 'page.border.200',
+        borderLeftColor: 'var(--grid-cell-pinned-border-color)',
         borderLeft: '1px solid',
       }}
       style={style}

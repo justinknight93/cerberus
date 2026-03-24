@@ -41,6 +41,10 @@ export interface GridOptions<TData> {
    * **default**: 'md'.
    */
   rowSize?: RowSizeOptions
+  /**
+   * The customizable colors for the Data Grid.
+   */
+  theme?: ThemeOptions
 }
 
 // --- Column Types ---
@@ -228,3 +232,36 @@ export type AccessorFn<TData> = (row: TData) => ReactNode
 export type Comparator<TValue> = (a: TValue, b: TValue) => number
 export type SortDirection = 'asc' | 'desc' | null
 export type PinnedState = 'left' | 'right' | undefined | boolean
+
+export type ThemeOptions = {
+  /**
+   * The border color of the Data Grid component which is the external border color.
+   * The default is `page.border.initial`.
+   */
+  borderColor?: string
+  /**
+   * The visible gap between the columns. Default is 0.
+   */
+  gap?: string
+  /**
+   * The border radius of the Data Grid component. Default is `lg`.
+   */
+  rounded?: string
+  /**
+   * The background color of the head cell. Default is `page.bg.initial`.
+   */
+  headCellBgColor?: string
+  /**
+   * The border color for the bottom border of the head cell.
+   * Default is `page.border.200`.
+   */
+  headCellBorderBottomColor?: string
+  /**
+   * The border color of the grid cell. Default is `page.border.200`.
+   */
+  gridCellBorderColor?: string
+  /**
+   * The border color of the pinned grid cell. Default is `page.border.200`.
+   */
+  gridCellPinnedBorderColor?: string
+}

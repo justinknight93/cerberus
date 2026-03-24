@@ -24,6 +24,7 @@ function DataGridEl<TData>(props: GridOptions<TData>) {
         initialState: props.initialState,
         rowSize: props.rowSize,
         onPageChange: props.onPageChange,
+        theme: props.theme,
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -82,12 +83,12 @@ function DataGridEl<TData>(props: GridOptions<TData>) {
         dir="columns"
         maxH="inherit"
         minH="inherit"
-        gap="0"
+        gap="var(--gap)"
         h="full"
         bgColor="page.surface.100/55"
         border="1px solid"
-        borderColor="page.border.initial"
-        rounded="lg"
+        borderColor="var(--border-color, var(--cerberus-colors-page-border-initial))"
+        rounded="var(--rounded, var(--cerberus-radii-lg))"
         overflow="hidden"
         w="full"
         ref={rootRef}
