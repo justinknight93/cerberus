@@ -29,6 +29,13 @@ export const items = [
     slug: 'context',
   },
   {
+    id: '0.5',
+    href: '/docs/data-grid/theme',
+    label: 'Theme',
+    slug: 'theme',
+  },
+
+  {
     id: '1.0',
     label: 'Layout',
     href: '',

@@ -317,15 +317,15 @@ function GridRowContainer(props: PropsWithChildren<GridRowContainerProps>) {
       data-scope={SCOPE}
       data-part={PARTS.ROW}
       data-render={isVirtualized ? 'virtualized' : 'static'}
-      bgColor="page.surface.100"
+      bgColor="var(--row-bg-color)"
       gap="0"
       h="var(--row-height)"
       w="full"
       _even={{
-        bgColor: 'page.surface.initial',
+        bgColor: 'var(--row-even-bg-color)',
       }}
       _hover={{
-        bgColor: 'page.surface.200',
+        bgColor: 'var(--row-hover-bg-color)',
       }}
       css={{
         '&:is([data-render=virtualized])': {

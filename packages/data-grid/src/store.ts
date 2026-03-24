@@ -1,5 +1,12 @@
 import { createSignal, createComputed, batch } from '@cerberus-design/signals'
-import type { GridOptions, GridStore, InternalColumn, PinnedState, SortState } from './types'
+import type {
+  GridOptions,
+  GridStore,
+  InternalColumn,
+  PinnedState,
+  SortState,
+  ThemeOptions,
+} from './types'
 import {
   determineInitialCount,
   determinePageIndex,
@@ -231,11 +238,17 @@ export function createGridStore<TData>(options: GridOptions<TData>): GridStore<T
     vars['--row-height'] = `${rowSize()}px`
 
     // setup theme
-    const theme: Record<string, string> = options.theme ?? DEFAULT_THEME
+    const theme = {
+      ...DEFAULT_THEME,
+      ...options.theme,
+    } as Required<ThemeOptions>
 
+    vars['--border'] = theme.border
     vars['--border-color'] = theme.borderColor
-    vars['--gap'] = theme.gap
     vars['--rounded'] = theme.rounded
+    vars['--row-bg-color'] = theme.rowBgColor
+    vars['--row-even-bg-color'] = theme.rowEvenBgColor
+    vars['--row-hover-bg-color'] = theme.rowHoverBgColor
     vars['--head-cell-bg-color'] = theme.headCellBgColor
     vars['--head-cell-border-bottom-color'] = theme.headCellBorderBottomColor
     vars['--grid-cell-border-color'] = theme.gridCellBorderColor

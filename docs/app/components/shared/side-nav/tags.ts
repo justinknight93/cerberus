@@ -1,1 +1,1 @@
-export const NEW = ['/docs/components/group', '/docs/components/pagination']
+export const NEW = ['/docs/data-grid/theme', '/docs/data-grid/footer']
