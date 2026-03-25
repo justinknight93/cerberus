@@ -89,33 +89,30 @@ Checkout the [Data Grid Theme documentation](/docs/data-grid/theme) for more det
 In v1.1 we introduce potentially one of the most impactful tools to the React
 ecosystem since Tanstack: **Cerberus Signals**.
 
-### Problem
+### The Problem
 
 Since migrating to hooks, React has become more than it was ever orignally designed
-to be as an API. This means that it has scaled past it's architecture. Especially,
-now that it is saturated in the market (thanks to political ties to LLMs) the team
-can no longer move in the direction they need to move for the best endgame for it's
-users.
+to be as an API. This means that it has scaled past its architecture. Especially,
+now that it is saturated in the market, the team can no longer move in the direction they need to for the best result for its users.
 
 Thus, the rise of libraries like [SolidJS](https://docs.solidjs.com/) who introduced
-the "Signal" pattern as an external state manager - validating that there was hope
-for the future of frontend development.
+the "Signal" pattern as an external state manager - validating there was hope for the future of frontend development.
 
 ### Current Solutions
 
-There have been many external state libraries before Cerberus Signals - from Redux
-to the closest signal-based solution Legend-State. However, all have fallen short
+There have been many external state libraries for React before Cerberus Signals. Rrom Redux to the closest signal-based solution Legend-State. However, all have fallen short
 in some area whether architecture or developer experience.
 
 We believe that we have fixed and improved in all of those areas. Let's dive in.
 
-> Cerberus Signals is highly inspired by SolidJS in more than one way. This wouldn't exist without the Solid core team pushing boundaries and dreaming big.
+> Cerberus Signals is highly inspired by [SolidJS](https://docs.solidjs.com/) in more than one way. This wouldn't exist without the Solid core team pushing boundaries and dreaming big.
 
 ### State managent
 
 Signal-based state managent is the foundation of Cerberus Signals. We intentionally
-avoid the use of Proxies which compliments how the React engine works while also
-providing a better developer experience for debugging.
+avoid the use of Proxies which compliment how the React engine works. A positive side-effect of this is also providing a better developer experience for debugging.
+
+If you have worked with Proxy-based state before, you know what we mean. :wink:
 
 With Cerberus signals, you can create **global signals** via `createSignal` or
 local (component-based) via the `useSignal` hook.
@@ -140,12 +137,14 @@ Read the [Stores documentation](/docs/signals/stores)
 ### Effects & Composition
 
 Since Cerberus Signals are external to the React render engine, there is no longer
-a need for the native APIs like `useMemo` or `useEffect` (unless you want to bring in the component lifecycle).
+a need for native APIs like `useMemo` or `useEffect` (unless you want to bring in the component lifecycle).
 
 Thus, you can `createComputed` values from multiple signals and watch for changes
-by `createEffect`. Since these APIs are not related to React, you can **use them on any scope.** Likewise, **effects can be nested** if you wanted to.
+with `createEffect`.
 
-> Did we mention no need for **dependency arrays**. You don't need them with Cerberus Signals.
+Since these APIs are not related to React, you can **use them on any scope.** Likewise, **effects can be nested** if you wanted to.
+
+> Did we mention **no dependency arrays**? You don't need them with Cerberus Signals.
 
 <CodePreview {...storeDemos.global} />
 <br />
@@ -155,7 +154,7 @@ by `createEffect`. Since these APIs are not related to React, you can **use them
 
 ### Querys & Mutations
 
-One of the best parts of SolidJS is the auto-magical signal-based fetching. We
+One of the best parts of SolidJS is the magical signal-based fetching. We
 provide a similar API via queries.
 
 > We use the term "fetching" but queries resolve **any Promise**. The only limitation to what a query is for your application is your own imagination.
@@ -181,7 +180,7 @@ There are two steps to creating a signal-based promise:
 
 Now for the most important part - **the hard data**.
 
-None of this matters if this design doesn scale. The goal for Cerberus Signals was to allow React developers to have as close to a SolidJS experience as possible in terms of performance and JSX rendering.
+None of this matters if this design doesn't scale. The goal for Cerberus Signals was to allow React developers to have as close to a SolidJS experience as possible in terms of performance and JSX rendering.
 
 If we can't make React render at _0(1)_ it's a waste...
 
@@ -212,7 +211,7 @@ Let's break down the results:
 
 - **The Diamond Problem (328 µs/iter)**: This is our crowning achievement. We just proved that iterating over a Set of 1,000 computeds, sorting them by depth, and executing them top-down takes 0.3 milliseconds.
 - **Wide Fan-Out (2.10 ms/iter)**: A buttery-smooth 60 frames-per-second UI gives you a budget of 16.6 ms per frame. Our graph can notify and execute 10,000 individual effects in just 2.1 ms. That leaves over 14 milliseconds for React to do its actual DOM painting.
-- **Deep Dependency Chain (318 µs/iter)**: A 1,000-level deep calculation resolved in a third of a millisecond. This proves our scheduler and isFlushing lock are incredibly efficient and prevent stack overflows.
+- **Deep Dependency Chain (318 µs/iter)**: A 1,000-level deep calculation resolved in a third of a millisecond. This proves our scheduler and `isFlushing` lock are incredibly efficient and prevent stack overflows.
 
 **Query Benchmarks:**
 
@@ -253,11 +252,11 @@ If you are interested in adopting signals, you can install it today:
 
 ## Thanks!
 
-This is a monumental release and one of the most significant updates to Cerberus
-since its inception.
+This is another monumental release introducing a massive tool to the React community via Cerberus Signals.
 
-A special thanks to everyone who has helped validate and shape the APIs and docs
-for this release.
+A special thanks to everyone who has helped validate the APIs, docs, and submitted features or bugfixes for this release.
+
+> There is no "I" in Cerber-"US"
 
 ## Upgrading
 
