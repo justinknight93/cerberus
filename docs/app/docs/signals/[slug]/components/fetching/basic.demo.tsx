@@ -32,7 +32,7 @@ function UserInfo() {
 export function BasicDemo() {
   return (
     <Stack direction="column" justify="space-between" w="3/4">
-      <Suspense fallback={<Box aria-busy h="200px" w="full" />}>
+      <Suspense fallback={<Box aria-busy h="96px" rounded="sm" w="full" />}>
         <UserInfo />
       </Suspense>
 
