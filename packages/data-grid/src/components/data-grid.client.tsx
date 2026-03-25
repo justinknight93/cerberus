@@ -11,12 +11,6 @@ import type { GridOptions } from '../types'
 import { GridViewport } from './grid.client'
 import { GridPagination } from './pagination.client'
 
-// Features
-// TODO: Figure out filtering (requires popover API)
-
-// Layout
-// TODO: Figure out footer
-
 function DataGridEl<TData>(props: GridOptions<TData>) {
   const { data } = props
 
@@ -30,6 +24,7 @@ function DataGridEl<TData>(props: GridOptions<TData>) {
         initialState: props.initialState,
         rowSize: props.rowSize,
         onPageChange: props.onPageChange,
+        theme: props.theme,
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -91,25 +86,24 @@ function DataGridEl<TData>(props: GridOptions<TData>) {
         gap="0"
         h="full"
         bgColor="page.surface.100/55"
-        border="1px solid"
-        borderColor="page.border.initial"
-        rounded="lg"
+        border="var(--border, 1px solid)"
+        borderColor="var(--border-color, var(--cerberus-colors-page-border-initial))"
+        rounded="var(--rounded, var(--cerberus-radii-lg))"
         overflow="hidden"
         w="full"
         ref={rootRef}
       >
         <Show when={ready}>{() => <GridViewport />}</Show>
-
-        <Show when={props.footer}>
-          {() => (
-            <HStack data-scope={SCOPE} data-part={PARTS.FOOTER} w="full">
-              {props.footer}
-            </HStack>
-          )}
-        </Show>
-
         <GridPagination />
       </Stack>
+
+      <Show when={props.footer}>
+        {() => (
+          <HStack data-scope={SCOPE} data-part={PARTS.FOOTER} w="full">
+            {props.footer}
+          </HStack>
+        )}
+      </Show>
     </DataGridProvider>
   )
 }

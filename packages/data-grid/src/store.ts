@@ -5,6 +5,7 @@ import type {
   InternalColumn,
   PinnedState,
   SortState,
+  ThemeOptions,
 } from './types'
 import {
   determineInitialCount,
@@ -13,15 +14,13 @@ import {
   determinePageSize,
   determineRowHeight,
 } from './utils'
-import { DEFAULT_PAGE_IDX } from './const'
+import { DEFAULT_PAGE_IDX, DEFAULT_THEME } from './const'
 
 /**
  * Internal signal-based Store engine driving the state. We expose this in
  * the public Context API.
  */
-export function createGridStore<TData>(
-  options: GridOptions<TData>,
-): GridStore<TData> {
+export function createGridStore<TData>(options: GridOptions<TData>): GridStore<TData> {
   const [containerWidth, setContainerWidth] = createSignal<number>(0)
   const [rows, setRows] = createSignal<TData[]>(options.data)
   const [rowSize] = createSignal<number>(determineRowHeight(options.rowSize))
@@ -35,9 +34,7 @@ export function createGridStore<TData>(
   const [pageSize, setPageSize] = createSignal<number>(
     determinePageSize(options.initialState?.pagination),
   )
-  const [pageRange] = createSignal<number[]>(
-    determinePageRange(options.initialState?.pagination),
-  )
+  const [pageRange] = createSignal<number[]>(determinePageRange(options.initialState?.pagination))
   const [isServerPaginated] = createSignal<boolean>(
     Boolean(determineInitialCount(options.initialState?.pagination)),
   )
@@ -82,17 +79,15 @@ export function createGridStore<TData>(
   })
   const [columns] = createSignal<InternalColumn<TData>[]>(initialCols)
 
-  const currentPageRange = createComputed<{ start: number; end: number }>(
-    () => {
-      const dataIdx = pageIndex() - 1
-      const isFirstPage = dataIdx === 0
-      const start = isFirstPage ? 0 : dataIdx * pageSize() - 1
-      return {
-        start,
-        end: pageIndex() * pageSize(),
-      }
-    },
-  )
+  const currentPageRange = createComputed<{ start: number; end: number }>(() => {
+    const dataIdx = pageIndex() - 1
+    const isFirstPage = dataIdx === 0
+    const start = isFirstPage ? 0 : dataIdx * pageSize() - 1
+    return {
+      start,
+      end: pageIndex() * pageSize(),
+    }
+  })
 
   // Processed with data-intensive features
   const processedRows = createComputed(() => {
@@ -148,9 +143,7 @@ export function createGridStore<TData>(
 
   // Derived pagination - Ark handles the rest
   const rowCount = createComputed(
-    () =>
-      determineInitialCount(options?.initialState?.pagination) ??
-      processedRows().length,
+    () => determineInitialCount(options?.initialState?.pagination) ?? processedRows().length,
   )
   const pageCount = createComputed(() => Math.ceil(rowCount() / pageSize()))
 
@@ -199,9 +192,7 @@ export function createGridStore<TData>(
         fixedSpace += col.width()
       }
 
-      const order = orderedColumns().findIndex(
-        (orderedCol) => orderedCol.id === col.id,
-      )
+      const order = orderedColumns().findIndex((orderedCol) => orderedCol.id === col.id)
       vars[`--col-${col.id}-order`] = `${order}`
     }
 
@@ -246,12 +237,27 @@ export function createGridStore<TData>(
     vars['--total-grid-width'] = `${totalW}px`
     vars['--row-height'] = `${rowSize()}px`
 
+    // setup theme
+    const theme = {
+      ...DEFAULT_THEME,
+      ...options.theme,
+    } as Required<ThemeOptions>
+
+    vars['--border'] = theme.border
+    vars['--border-color'] = theme.borderColor
+    vars['--rounded'] = theme.rounded
+    vars['--row-bg-color'] = theme.rowBgColor
+    vars['--row-even-bg-color'] = theme.rowEvenBgColor
+    vars['--row-hover-bg-color'] = theme.rowHoverBgColor
+    vars['--head-cell-bg-color'] = theme.headCellBgColor
+    vars['--head-cell-border-bottom-color'] = theme.headCellBorderBottomColor
+    vars['--grid-cell-border-color'] = theme.gridCellBorderColor
+    vars['--grid-cell-pinned-border-color'] = theme.gridCellPinnedBorderColor
+
     return vars
   })
 
-  const totalWidth = createComputed(() =>
-    columns().reduce((acc, c) => acc + c.width(), 0),
-  )
+  const totalWidth = createComputed(() => columns().reduce((acc, c) => acc + c.width(), 0))
 
   return {
     columns,
@@ -364,9 +370,7 @@ export function createGridStore<TData>(
           col.setFlex(false) // Disable flex behavior permanently for this column
         }
 
-        col.setColWidth(
-          Math.max(col.original.minWidth ?? 50, col.width() + delta),
-        )
+        col.setColWidth(Math.max(col.original.minWidth ?? 50, col.width() + delta))
       }
     },
   }

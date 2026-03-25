@@ -1,11 +1,13 @@
 export interface Observable {
   observers: Set<Observer>
+  depth: number
 }
 
 export interface Observer {
   dependencies: Set<Observable>
   execute(): void
   cleanup(): void
+  depth: number
 }
 
 export type Accessor<T> = () => T

@@ -1,3 +1,5 @@
+import { ThemeOptions } from './types'
+
 export const SCOPE = 'data-grid'
 
 export const DEFAULT_COL_H = 40
@@ -44,4 +46,17 @@ export const ROW_SIZES: RowSizeData = {
     [LG]: 56,
     [XL]: 64,
   },
+}
+
+export const DEFAULT_THEME: ThemeOptions = {
+  border: '1px solid',
+  borderColor: 'var(--cerberus-colors-page-border-initial)',
+  rounded: 'var(--cerberus-radii-lg)',
+  rowBgColor: 'var(--cerberus-colors-page-surface-100)',
+  rowEvenBgColor: 'var(--cerberus-colors-page-surface-initial)',
+  rowHoverBgColor: 'var(--cerberus-colors-page-surface-200)',
+  headCellBgColor: 'var(--cerberus-colors-page-bg-initial)',
+  headCellBorderBottomColor: 'var(--cerberus-colors-page-border-200)',
+  gridCellBorderColor: 'var(--cerberus-colors-page-border-200)',
+  gridCellPinnedBorderColor: 'var(--cerberus-colors-page-border-200)',
 }
