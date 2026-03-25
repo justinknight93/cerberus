@@ -36,8 +36,30 @@ the [`createStoreContext`](/docs/signals/create-store-context) API.
 
 <CodePreview {...DEMOS.basic} />
 
+## React rules
+
+Depending on the complexity and use case of your store, React may "get in the way" of your signal management when using stores **within a component**.
+
+If you intend on using a store within a component you must follow one of the two designs to ensure React doesn't corrupt your hard work via the render cycles:
+
+### Pure Global Stores
+
+If you have a store that can be called on the global scope (**outside of a component**), then you are good to go. Utilize `useRead` for iteration and `ReactiveText` for reading.
+
+<CodePreview {...DEMOS.pure} />
+
+### Local Component Store
+
+If a store **must live within a component**, then you will need to take precautions to ensure React does not corrupt your store state via wrapping your store in `useMemo`.
+
+<NoteAdmonition description="Wrapping your store in useMemo is only required if you are using the useRead hook to obtain the reactive value from a store. If your component is only calling actions or utilizing the ReactiveText component, then it is unneccessary (as shown in the demos in the prior sections)." />
+
+<CodePreview {...DEMOS.local} />
+
 ## Reactivity
 
 Since stores are essentially a primitive that contain primitives, you will need
 to utilize the `ReactiveText` or `useRead` APIs in order to obtain the reactive
 values within the scope of any component.
+
+When calling a store **within a component** and reading a value with `useRead` you must wrap your store in `useMemo` to ensure React does not corrupt the signal state.

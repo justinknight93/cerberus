@@ -2,6 +2,8 @@
 
 **True fine-grained reactivity for React. The Developer Experience of SolidJS, built on standard React primitives.**
 
+> [View the official docs for Cerberus Signals](https://cerberus.digitalu.design/docs/signals/overview)
+
 `@cerberus/signals` is a high-performance, zero-dependency state management and data-fetching engine. It completely eliminates dependency arrays, avoids the "Context re-render cascade," and brings $O(1)$ component targeting to your React applications safely via `useSyncExternalStore`.
 
 ## ✨ Why this library?
