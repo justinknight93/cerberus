@@ -52,6 +52,12 @@ signal which provides a computational value. This is similar to the native React
 
 <NoteAdmonition description="Notice how the createComputed primitive doesn't require a dependency Array? In Cerberus Signals, we auto-detect signals so you don't have to waste time declaring." />
 
+### Objects and Arrays
+
+When storing Objects or Arrays (any non-Primitiva value) in a signal, we recommend **using immutable updates** when setting new values. Doing so will ensure the best performance outcome since the graph uses strict equality (`!==`) to detect changes.
+
+<CodePreview {...DEMOS.updates} />
+
 ## Stores
 
 You can create global stores to read and manage state across your entire application,

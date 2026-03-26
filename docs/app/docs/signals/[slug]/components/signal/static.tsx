@@ -30,6 +30,10 @@ export const DEMOS = {
     preview: <UseDemo />,
     context: 'signals',
   },
+  updates: {
+    id: 'signal.updates',
+    context: 'signals',
+  },
   hookMeta: `import { useSignal } from '@cerberus/signals'`,
   meta: `import { createSignal } from '@cerberus/signals'`,
 }
