@@ -52,6 +52,13 @@ describe('group recipe', () => {
             flex: 1,
           },
         },
+        stack: {
+          display: 'flex',
+          gap: '0',
+          '& > *': {
+            position: 'relative',
+          },
+        },
       },
     })
   })
@@ -76,6 +83,15 @@ describe('group recipe', () => {
         },
       },
       {
+        orientation: 'horizontal',
+        layout: 'stack',
+        css: {
+          '& > *:not(:first-child)': {
+            ms: '-15px',
+          },
+        },
+      },
+      {
         orientation: 'vertical',
         layout: 'attached',
         css: {
@@ -89,6 +105,15 @@ describe('group recipe', () => {
           },
           '& > *:last-child': {
             borderTopRadius: '0!',
+          },
+        },
+      },
+      {
+        orientation: 'vertical',
+        layout: 'stack',
+        css: {
+          '& > *:not(:first-child)': {
+            mt: '-15px',
           },
         },
       },
