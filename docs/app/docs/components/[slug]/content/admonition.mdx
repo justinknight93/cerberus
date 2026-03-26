@@ -35,6 +35,12 @@ are `filled` (default) and `outlined`.
 
 <CodePreview {...DEMOS.usage} />
 
+## Customizing
+
+You can customize the Admonition any way you like with style props and data-selectors.
+
+<CodePreview {...DEMOS.custom} />
+
 ## Primitives
 
 You can utilize the primitive components or style props to customize the
@@ -48,7 +54,18 @@ admonition.
 | AdmonitionHeading     | The heading of the admonition           |
 | AdmonitionDescription | The description body of the admonition  |
 
-<CodePreview {...DEMOS.custom} />
+### Data Attributes
+
+The primitives additionally use the following data attributes for custom styling:
+
+| Name         | Value         | Description                  |
+| ------------ | ------------- | ---------------------------- |
+| `data-scope` | `admonition`  | The scope of the components. |
+| `data-part`  | `root`        | The part of the component.   |
+| `data-part`  | `indicator`   | The part of the component.   |
+| `data-part`  | `content`     | The part of the component.   |
+| `data-part`  | `heading`     | The part of the component.   |
+| `data-part`  | `description` | The part of the component.   |
 
 ## API
 
@@ -69,21 +86,10 @@ The `AdmonitionParts` API is an Object containing the full family of components.
 
 <NoteAdmonition description="It is best to only use the AdmonitionParts if you are building a custom solution. Importing Object based components will ship every property it includes into your bundle, regardless if you use it or not." />
 
-| Name        | Description                                                                |
-| ----------- | -------------------------------------------------------------------------- |
-| Root        | The `AdmonitionRoot` component which is the container of the family.       |
-| Indicator   | The `AdmonitionIndicator` component which is the icon of the admonition    |
-| Content     | The `AdmonitionContent` component which is the container of the admonition |
-| Heading     | The `AdmonitionHeading` component which is the heading of the admonition   |
-| Description | The `Admonition` component which is the description body of the admonition |
-
-The Parts additionally use the following data attributes:
-
-| Name         | Value         | Description                  |
-| ------------ | ------------- | ---------------------------- |
-| `data-scope` | `admonition`  | The scope of the components. |
-| `data-part`  | `root`        | The part of the component.   |
-| `data-part`  | `indicator`   | The part of the component.   |
-| `data-part`  | `content`     | The part of the component.   |
-| `data-part`  | `heading`     | The part of the component.   |
-| `data-part`  | `description` | The part of the component.   |
+| Name        | Description                                                                 |
+| ----------- | --------------------------------------------------------------------------- |
+| Root        | The `AdmonitionRoot` component which is the container of the family.        |
+| Indicator   | The `AdmonitionIndicator` component which is the icon of the admonition.    |
+| Content     | The `AdmonitionContent` component which is the container of the admonition. |
+| Heading     | The `AdmonitionHeading` component which is the heading of the admonition.   |
+| Description | The `Admonition` component which is the description body of the admonition. |

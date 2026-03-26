@@ -1,4 +1,8 @@
-import { defineRecipe, type RecipeConfig, type RecipeVariantRecord } from '@pandacss/dev'
+import {
+  defineRecipe,
+  type RecipeConfig,
+  type RecipeVariantRecord,
+} from '@pandacss/dev'
 
 export const group: RecipeConfig<RecipeVariantRecord> = defineRecipe({
   className: 'group',
@@ -40,6 +44,13 @@ export const group: RecipeConfig<RecipeVariantRecord> = defineRecipe({
           flex: 1,
         },
       },
+      stack: {
+        display: 'flex',
+        gap: '0',
+        '& > *': {
+          position: 'relative',
+        },
+      },
     },
   },
 
@@ -62,6 +73,15 @@ export const group: RecipeConfig<RecipeVariantRecord> = defineRecipe({
       },
     },
     {
+      orientation: 'horizontal',
+      layout: 'stack',
+      css: {
+        '& > *:not(:first-child)': {
+          ms: '-15px',
+        },
+      },
+    },
+    {
       orientation: 'vertical',
       layout: 'attached',
       css: {
@@ -75,6 +95,15 @@ export const group: RecipeConfig<RecipeVariantRecord> = defineRecipe({
         },
         '& > *:last-child': {
           borderTopRadius: '0!',
+        },
+      },
+    },
+    {
+      orientation: 'vertical',
+      layout: 'stack',
+      css: {
+        '& > *:not(:first-child)': {
+          mt: '-15px',
         },
       },
     },
