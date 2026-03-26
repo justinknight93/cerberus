@@ -212,7 +212,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             letterSpacing: '0.01em',
             paddingInline: '0.3rem',
             paddingBlock: '0.2rem',
-            fontSize: '0.875rem',
+            fontSize: '0.75rem',
           },
         })}
         {...props}
