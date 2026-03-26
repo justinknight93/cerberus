@@ -33,12 +33,18 @@ Use the `orientation` prop to change the direction of the children.
 
 <CodePreview {...DEMOS.orientation} />
 
+## Stack
+
+Use the `stack` variant of the `layout` with `orientation` to stack the children.
+
+<CodePreview {...DEMOS.stack} />
+
 ## Props
 
 The `Group` component accepts any style properties along with the following props:
 
-| Prop        | Type         | Description                                    |
-|-------------|--------------|------------------------------------------------|
-| `layout`     | `default, attached, grow` | The layout of the children along the cross axis. |
-| `orientation` | `horizontal, vertical` | The direction of the children. |
-| `asChild` | `boolean` | Use the provided child element as the default rendered element, combining their props and behavior. |
+| Prop          | Type                                   | Description                                                                                         |
+| ------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `layout`      | `default \| attached \| grow \| stack` | The layout of the children along the cross axis.                                                    |
+| `orientation` | `horizontal, vertical`                 | The direction of the children.                                                                      |
+| `asChild`     | `boolean`                              | Use the provided child element as the default rendered element, combining their props and behavior. |
