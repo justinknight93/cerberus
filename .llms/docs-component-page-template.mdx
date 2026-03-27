@@ -1,0 +1,70 @@
+---
+title: [ComponentName]
+description: [A short description of the component]
+npm: '@cerberus-design/react'
+source: 'components/[component-file-name]'
+recipe: '/slots/[recipe-name].ts'
+ark: [ark-ui-component-slug]
+---
+
+import { NoteAdmonition } from '@/app/components/Admonition'
+import CodePreview from '@/app/components/CodePreview'
+import { CodeSnippet } from '@/app/components/code-snippet'
+import { DEMOS } from '../components/<componentName>/static'
+
+<CodeSnippet snippet={DEMOS.meta} />
+
+## Usage
+
+[A detailed intro description of the component and basic usage]
+
+<CodePreview {...DEMOS.basic} />
+
+## Variant Name
+
+[A short description of the variant and how to use it]
+
+<CodePreview {...DEMOS.[variant-name]} />
+
+## Customization
+
+You can customize the [componentName] any way you like with style props and data-selectors.
+
+<CodePreview {...DEMOS.custom} />
+
+## Primitives
+
+The layers of the [componentName] which can be used to create a fully custom solution.
+
+| Component           | Description                                        |
+| ------------------- | -------------------------------------------------- |
+| [ComponentName]Root | The context provider for the [componentName] parts |
+
+### Data Attributes
+
+The primitives additionally use the following data attributes for custom styling:
+
+| Name         | Value            | Description                         |
+| ------------ | ---------------- | ----------------------------------- |
+| `data-scope` | `component-name` | The scope of the components.        |
+| `data-part`  | `slot-name`      | The [slot-name] layer of the scope. |
+
+## API
+
+### Props
+
+The `[componentName]` component is an abstraction of the primitives and accepts the following props:
+
+| Name     | Default | Description                                     |
+| -------- | ------- | ----------------------------------------------- |
+| fallback |         | The fallback content to display for the avatar. |
+
+### Parts
+
+The `[ComponentName]Parts` API is an Object containing the full family of components.
+
+<NoteAdmonition description="It is best to only use the [ComponentName]Parts if you are building a custom solution. Importing Object based components will ship every property it includes into your bundle, regardless if you use it or not." />
+
+| Name | Description                                                               |
+| ---- | ------------------------------------------------------------------------- |
+| Root | The `[ComponentName]Root` component which is the Provider for the family. |
