@@ -13,8 +13,11 @@ tag: Release
 import BashTabs from '@/app/components/bash-tabs'
 import CodePreview from '@/app/components/CodePreview'
 
-import { StaticPreview as ClipboardDemo, ButtonPreview as ClipboardButtonDemo } from '@/app/docs/components/[slug]/components/clipboard/static'
-import { StaticPreview as CollapsibleDemo, FadeInPreview as CollapsibleFadeDemo } from '@/app/docs/components/[slug]/components/collapsible/static'
+import { DEMOS as ClipboardDemo } from '@/app/docs/components/[slug]/components/clipboard/static'
+import {
+  StaticPreview as CollapsibleDemo,
+  FadeInPreview as CollapsibleFadeDemo,
+} from '@/app/docs/components/[slug]/components/collapsible/static'
 
 We're excited to announce the release of Cerberus v0.23! This update brings powerful new utility components that streamline common interaction patterns, along with important bug fixes that enhance reliability and visual consistency.
 
@@ -26,63 +29,21 @@ We're excited to announce the release of Cerberus v0.23! This update brings powe
 
 Copy text to the clipboard with ease using the new `Clipboard` component. This component provides an accessible way to copy text with built-in visual feedback and customizable indicators.
 
-<CodePreview preview={<ClipboardDemo />} />
-```tsx
-import { Clipboard, IconButton, Text } from '@cerberus/react'
-import { HStack } from 'styled-system/jsx'
-
-function ClipboardDemo() {
-  return (
-    <Clipboard.Root value="Hello, World!">
-      <Clipboard.Control asChild>
-        <HStack gap="md" w="full">
-          <Clipboard.Label asChild>
-            <Text as="small" textStyle="label-sm">
-              Hello, World!
-            </Text>
-          </Clipboard.Label>
-
-          <Clipboard.Trigger asChild>
-            <IconButton clipboard shape="square" size="sm" rounded="xs">
-              <Clipboard.Indicator />
-            </IconButton>
-          </Clipboard.Trigger>
-        </HStack>
-      </Clipboard.Control>
-    </Clipboard.Root>
-  )
-}
-```
+<CodePreview {...ClipboardDemo.basic} />
+<br />
 
 The Clipboard component is completely unstyled by default, giving you full control over its appearance. You can easily compose it with buttons, text, or any other interactive elements.
 
 #### Button Integration
 
-<CodePreview preview={<ClipboardButtonDemo />} />
-```tsx
-import { Clipboard, Button } from '@cerberus/react'
-
-function ClipboardButton() {
-  return (
-    <Clipboard.Root value="Hello, World!">
-      <Clipboard.Control>
-        <Clipboard.Trigger asChild>
-          <Button color="action.text.initial">
-            <Clipboard.CopyText color="currentColor" />
-            <Clipboard.Indicator />
-          </Button>
-        </Clipboard.Trigger>
-      </Clipboard.Control>
-    </Clipboard.Root>
-  )
-}
-```
+<CodePreview {...ClipboardDemo.button} />
 
 ### Collapsible
 
 Show or hide content with smooth animations using the new `Collapsible` component. Perfect for creating accordions, expandable sections, and progressive disclosure patterns.
 
 <CodePreview preview={<CollapsibleDemo />} />
+
 ```tsx
 import { Collapsible } from '@cerberus/react'
 import { Box, HStack } from 'styled-system/jsx'
@@ -114,6 +75,7 @@ function CollapsibleDemo() {
 Control the animation behavior with the `effect` prop. You can choose from smooth height transitions or fade effects, or disable animations entirely.
 
 <CodePreview preview={<CollapsibleFadeDemo />} />
+
 ```tsx
 function CollapsibleWithEffect() {
   return (
