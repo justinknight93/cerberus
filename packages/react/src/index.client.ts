@@ -5,6 +5,7 @@
 export {
   AccordionRootProvider,
   useAccordion,
+  useClipboard,
   useCollapsible,
   useCollapsibleContext,
   DialogRootProvider,
