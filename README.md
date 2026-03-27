@@ -46,7 +46,12 @@ This will install all the dependencies for the project including the workspaces.
 ### Cerberus Package Context
 
 - **panda-preset**: The default preset for Cerberus. This is where all the styles live.
-- **react**: The React components for Cerberus. React only owns components, not styles.
+- **preset-***: Any preset for PandaCSS. Mostly themes for now.
+- **react**: The React primitive components for Cerberus. React only owns components, not styles.
+- **data-grid**: The Data Grid library for React.
+- **signals**: The Signals library for React.
+
+> Any React-based package gets shipped to NPM while all other packages shipped to JSR for an improved DX and stricter accountability. The only reason we ship React to NPM is due to teams that still use Jest which forces us into CJS compilation.
 
 ## Docs
 
