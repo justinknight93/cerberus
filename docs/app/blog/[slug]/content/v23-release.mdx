@@ -14,10 +14,7 @@ import BashTabs from '@/app/components/bash-tabs'
 import CodePreview from '@/app/components/CodePreview'
 
 import { DEMOS as ClipboardDemo } from '@/app/docs/components/[slug]/components/clipboard/static'
-import {
-  StaticPreview as CollapsibleDemo,
-  FadeInPreview as CollapsibleFadeDemo,
-} from '@/app/docs/components/[slug]/components/collapsible/static'
+import { DEMOS as CollapsibleDemo } from '@/app/docs/components/[slug]/components/collapsible/static'
 
 We're excited to announce the release of Cerberus v0.23! This update brings powerful new utility components that streamline common interaction patterns, along with important bug fixes that enhance reliability and visual consistency.
 
@@ -42,60 +39,13 @@ The Clipboard component is completely unstyled by default, giving you full contr
 
 Show or hide content with smooth animations using the new `Collapsible` component. Perfect for creating accordions, expandable sections, and progressive disclosure patterns.
 
-<CodePreview preview={<CollapsibleDemo />} />
-
-```tsx
-import { Collapsible } from '@cerberus/react'
-import { Box, HStack } from 'styled-system/jsx'
-
-function CollapsibleDemo() {
-  return (
-    <HStack h="full" w="17rem">
-      <Collapsible.Root>
-        <Collapsible.Trigger>Toggle</Collapsible.Trigger>
-        <Collapsible.Content>
-          <Box
-            border="1px solid"
-            borderColor="page.border.initial"
-            p="md"
-            rounded="md"
-            w="full"
-          >
-            Collapsible content goes here.
-          </Box>
-        </Collapsible.Content>
-      </Collapsible.Root>
-    </HStack>
-  )
-}
-```
+<CodePreview {...CollapsibleDemo.basic} />
 
 #### Customizable Effects
 
 Control the animation behavior with the `effect` prop. You can choose from smooth height transitions or fade effects, or disable animations entirely.
 
-<CodePreview preview={<CollapsibleFadeDemo />} />
-
-```tsx
-function CollapsibleWithEffect() {
-  return (
-    <Collapsible.Root>
-      <Collapsible.Trigger>Toggle</Collapsible.Trigger>
-      <Collapsible.Content effect="fade">
-        <Box
-          border="1px solid"
-          borderColor="page.border.initial"
-          p="md"
-          rounded="md"
-          w="full"
-        >
-          Fades in and out smoothly.
-        </Box>
-      </Collapsible.Content>
-    </Collapsible.Root>
-  )
-}
-```
+<CodePreview {...CollapsibleDemo.fade} />
 
 ## Bug Fixes & Improvements
 

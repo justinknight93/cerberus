@@ -6,10 +6,7 @@ import {
   type CollapsibleIndicatorProps as ArkCollapsibleIndicatorProps,
   type CollapsibleContentProps as ArkCollapsibleContentProps,
 } from '@ark-ui/react/collapsible'
-import {
-  collapsible,
-  type CollapsibleVariantProps,
-} from 'styled-system/recipes'
+import { collapsible, type CollapsibleVariantProps } from 'styled-system/recipes'
 import {
   createCerberusPrimitive,
   type CerberusPrimitiveProps,
@@ -29,14 +26,12 @@ export const CollapsibleRootProvider = withNoRecipe(Collapsible.RootProvider)
 
 // Root
 
-export type CollapsibleRootProps =
-  CerberusPrimitiveProps<ArkCollapsibleRootProps>
+export type CollapsibleRootProps = CerberusPrimitiveProps<ArkCollapsibleRootProps>
 export const CollapsibleRoot = withNoRecipe(Collapsible.Root)
 
 // Trigger
 
-export type CollapsibleTriggerProps =
-  CerberusPrimitiveProps<ArkCollapsibleTriggerProps>
+export type CollapsibleTriggerProps = CerberusPrimitiveProps<ArkCollapsibleTriggerProps>
 export const CollapsibleTrigger = withNoRecipe(Collapsible.Trigger)
 
 // Indicator

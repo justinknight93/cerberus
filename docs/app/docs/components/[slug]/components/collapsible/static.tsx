@@ -1,61 +1,34 @@
-'use client'
+import { BasicDemo } from './basic.demo'
+import { OpenDemo } from './open.demo'
+import { PartialDemo } from './partial.demo'
+import { FadeDemo } from './fade.demo'
+import { CustomDemo } from './custom.demo'
+import { ControlledDemo } from './controlled.demo'
 
-import { Box, HStack } from '@/styled-system/jsx'
-import { Collapsible } from '@cerberus-design/react'
-
-export function StaticPreview() {
-  return (
-    <HStack h="full" w="17rem">
-      <Collapsible.Root>
-        <Collapsible.Trigger>Toggle</Collapsible.Trigger>
-        <Collapsible.Content>
-          <Box
-            border="1px solid"
-            borderColor="page.border.initial"
-            p="md"
-            rounded="md"
-            w="full"
-          >
-            Collapsible content goes here.
-          </Box>
-        </Collapsible.Content>
-      </Collapsible.Root>
-    </HStack>
-  )
-}
-
-export function FadeInPreview() {
-  return (
-    <HStack h="full" w="17rem">
-      <Collapsible.Root>
-        <Collapsible.Trigger>Toggle</Collapsible.Trigger>
-        <Collapsible.Content effect="fade">
-          <Box
-            border="1px solid"
-            borderColor="page.border.initial"
-            p="md"
-            rounded="md"
-            w="full"
-          >
-            Collapsible content goes here.
-          </Box>
-        </Collapsible.Content>
-      </Collapsible.Root>
-    </HStack>
-  )
-}
-
-export function CustomPreview() {
-  return (
-    <Collapsible.Root>
-      <Collapsible.Trigger style={{ color: 'tomato' }}>
-        Custom Toggle
-      </Collapsible.Trigger>
-      <Collapsible.Content>
-        <div style={{ padding: 16, background: '#e0f7fa', borderRadius: 4 }}>
-          Custom collapsible content.
-        </div>
-      </Collapsible.Content>
-    </Collapsible.Root>
-  )
+export const DEMOS = {
+  basic: {
+    id: 'collapsible.basic',
+    preview: <BasicDemo />,
+  },
+  open: {
+    id: 'collapsible.open',
+    preview: <OpenDemo />,
+  },
+  partial: {
+    id: 'collapsible.partial',
+    preview: <PartialDemo />,
+  },
+  fade: {
+    id: 'collapsible.fade',
+    preview: <FadeDemo />,
+  },
+  custom: {
+    id: 'collapsible.custom',
+    preview: <CustomDemo />,
+  },
+  controlled: {
+    id: 'collapsible.controlled',
+    preview: <ControlledDemo />,
+  },
+  meta: `import { Collapsible } from '@cerberus/react'`,
 }
