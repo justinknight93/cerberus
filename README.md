@@ -11,14 +11,6 @@
 
 This is a monorepo that uses [pnPm](https://pnpm.io/) to manage dependencies and [Bun](https://bun.sh/) as the runtime language. You will need to install these tools to work on this project.
 
-## JSR Requirements
-
-We follow the slow types requirements process of the JSR publishing standard. This means you will be required to define the return types of all your exports which result in the following:
-
-1. Significantly improve your package users' type checking performance.
-2. Improve the automatic documentation generation.
-3. Enable automatic .d.ts generation for Node.js.
-
 ## Getting started
 
 ### Install Required Tools
@@ -46,12 +38,40 @@ This will install all the dependencies for the project including the workspaces.
 ### Cerberus Package Context
 
 - **panda-preset**: The default preset for Cerberus. This is where all the styles live.
-- **preset-***: Any preset for PandaCSS. Mostly themes for now.
+- **preset-\***: Any preset for PandaCSS. Mostly themes for now.
 - **react**: The React primitive components for Cerberus. React only owns components, not styles.
 - **data-grid**: The Data Grid library for React.
 - **signals**: The Signals library for React.
 
-> Any React-based package gets shipped to NPM while all other packages shipped to JSR for an improved DX and stricter accountability. The only reason we ship React to NPM is due to teams that still use Jest which forces us into CJS compilation.
+> Any React-based package gets shipped to NPM while all other packages shipped to JSR for an [improved DX through type referencing](https://jsr.io/docs/why) and stricter accountability. The only reason we ship React to NPM is due to teams that still use Jest which forces us into CJS compilation.
+
+### JSR Requirements
+
+We follow the [slow types requirements](https://jsr.io/docs/about-slow-types) process of the JSR publishing standard for any JSR published package. This means you will be held to a stricter standard than you might be used to if you have not utilized Deno as a runtime (JSR essentially uses `deno check` under the hood):
+
+1. Significantly improve your package users' type checking performance.
+2. Improve the automatic documentation generation.
+3. Enable automatic .d.ts generation for Node.js.
+
+For example, this will fail:
+
+```typescript
+export const myApi = () => 'Hello world!'
+```
+
+This will pass (follows the slow types guidelines):
+
+```typescript
+export function myApi(): string {
+  return 'Hello world!'
+}
+```
+
+#### How does JSR benefit end users?
+
+JSR was made for ESM and the typescript environment which ultimately results in packages being scored on how well the code quality is when publishing to JSR. Additionally, since JSR is built for typescript it will drill down to the actual source code for developers using a JSR package (vs. NPM will drill down to a compiled type file that provides no code context).
+
+Learn more about why JSR is important for typescript applications [on their site](https://jsr.io/docs/why).
 
 ## Docs
 
