@@ -103,7 +103,7 @@ The repository follows a workspace-based architecture with these key packages:
 - **`docs/`**: Next.js documentation website showcasing components and usage
 - **`tests/`**: Centralized test suite using Bun and Testing Library
 - **`configs/`**: Shared configuration files
-- **`.llms/`**: AI/LLM integration documentation and guidelines
+- **`.agents/`**: AI/LLM integration documentation and guidelines
 
 ### Styling Architecture
 
@@ -187,7 +187,7 @@ When creating new React components, follow the pattern:
 4. Create `index.ts` to export public APIs
 5. Add exports to main `packages/react/src/index.ts`
 
-Detailed instructions are available in `.llms/create-react-component.md`.
+Detailed instructions are available in `.agents/create-react-component.md`.
 
 ### Testing Approach
 
@@ -198,7 +198,7 @@ Detailed instructions are available in `.llms/create-react-component.md`.
 
 ## AI/LLM Integration
 
-The `.llms` directory contains specialized documentation for AI tools:
+The `.agents` directory contains specialized documentation for AI tools:
 
 - **`style-guide.md`**: Comprehensive coding standards and patterns
 - **`create-react-component.md`**: Step-by-step component creation guide

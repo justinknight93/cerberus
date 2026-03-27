@@ -83,11 +83,11 @@ pnpm run start:docs
 
 ## AI/LLM Integration
 
-Cerberus provides a specialized endpoint for AI and Large Language Model (LLM) integrations through the `.llms` directory. This feature allows AI tools to access structured documentation content in a format optimized for LLM consumption.
+Cerberus provides a specialized endpoint for AI and Large Language Model (LLM) integrations through the `.agents` directory. This feature allows AI tools to access structured documentation content in a format optimized for LLM consumption.
 
 ### Contribution Guidelines
 
-You can help train your LLMs to follow our project guidelines by utilizing the `.llms` directory. This directory contains structured documentation that is specifically designed for AI processing, ensuring that your LLMs can effectively understand and utilize the Cerberus design system.
+You can help train your LLMs to follow our project guidelines by utilizing the `.agents` directory. This directory contains structured documentation that is specifically designed for AI processing, ensuring that your LLMs can effectively understand and utilize the Cerberus design system.
 
 - **ark-ui.txt**: Documentation for the Ark UI components which is a dependency of our React package.
 - **create-react-component.md**: Documentation for creating new React component APIs.
@@ -101,7 +101,7 @@ In our Wikis tab, you can find recommended prompts to use for executing these fi
 
 ### LLM Documentation Endpoint
 
-The documentation is available at the `/llms.txt` endpoint, which provides:
+The documentation is available at the [`/llms.txt`](https://cerberus.digitalu.design/llms.txt) endpoint, which provides:
 
 - **Structured Documentation**: All documentation content organized hierarchically by sections (Get Started, Components, Styling, Theming, Blog)
 - **Direct Content Access**: Links to raw GitHub content for detailed documentation
