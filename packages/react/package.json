@@ -73,8 +73,9 @@
     "lint:ts": "tsc --project tsconfig.lint.json --noEmit"
   },
   "dependencies": {
-    "@ark-ui/react": "^5.34.1",
-    "@carbon/icons-react": "^11.76.0"
+    "@ark-ui/react": "^5.35.0",
+    "@carbon/icons-react": "^11.76.0",
+    "@pandacss/types": "^1.9.1"
   },
   "devDependencies": {
     "@cerberus/panda-preset": "workspace:*",
