@@ -46,12 +46,6 @@ importers:
 
   configs:
     dependencies:
-      '@pandacss/dev':
-        specifier: ^1.9.1
-        version: 1.9.1(jsdom@26.0.0)(typescript@5.9.3)
-      '@pandacss/types':
-        specifier: ^1.9.1
-        version: 1.9.1
       bun:
         specifier: '*'
         version: 1.2.15
@@ -222,9 +216,6 @@ importers:
       '@cerberus-design/signals':
         specifier: workspace:*
         version: link:../signals
-      '@pandacss/types':
-        specifier: ^1.9.1
-        version: 1.9.1
     devDependencies:
       '@cerberus/panda-preset':
         specifier: workspace:*
@@ -261,13 +252,6 @@ importers:
         version: 4.5.4(@types/node@25.5.0)(typescript@5.9.3)(vite@8.0.2(@types/node@25.5.0)(esbuild@0.27.2)(jiti@2.4.2)(terser@5.46.1)(yaml@2.8.3))
 
   packages/figma:
-    dependencies:
-      '@pandacss/dev':
-        specifier: ^1.9.1
-        version: 1.9.1(jsdom@26.0.0)(typescript@5.9.3)
-      '@pandacss/types':
-        specifier: ^1.9.1
-        version: 1.9.1
     devDependencies:
       '@figma/rest-api-spec':
         specifier: ^0.36.0
@@ -387,9 +371,6 @@ importers:
       '@carbon/icons-react':
         specifier: ^11.76.0
         version: 11.76.0(react@19.2.4)
-      '@pandacss/types':
-        specifier: ^1.9.1
-        version: 1.9.1
     devDependencies:
       '@cerberus/panda-preset':
         specifier: workspace:*
@@ -429,13 +410,6 @@ importers:
         version: 4.5.4(@types/node@25.5.0)(typescript@5.9.3)(vite@8.0.2(@types/node@25.5.0)(esbuild@0.27.2)(jiti@2.4.2)(terser@5.46.1)(yaml@2.8.3))
 
   packages/signals:
-    dependencies:
-      '@pandacss/dev':
-        specifier: ^1.9.1
-        version: 1.9.1(jsdom@26.0.0)(typescript@5.9.3)
-      '@pandacss/types':
-        specifier: ^1.9.1
-        version: 1.9.1
     devDependencies:
       '@types/react':
         specifier: ^19.2.14
@@ -469,10 +443,6 @@ importers:
         version: 1.9.1
 
   styled-system:
-    dependencies:
-      '@pandacss/types':
-        specifier: ^1.9.1
-        version: 1.9.1
     devDependencies:
       '@cerberus/panda-preset':
         specifier: workspace:*
@@ -488,10 +458,6 @@ importers:
         version: 19.2.4
 
   tests:
-    dependencies:
-      '@pandacss/dev':
-        specifier: ^1.9.1
-        version: 1.9.1(jsdom@26.0.0)(typescript@5.9.3)
     devDependencies:
       '@carbon/icons-react':
         specifier: ^11.76.0

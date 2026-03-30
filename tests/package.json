@@ -9,9 +9,6 @@
     "test:bench": "bun run ./signals/scheduler.bench.ts",
     "test:ci": "bun test --coverage"
   },
-  "dependencies": {
-    "@pandacss/dev": "^1.9.1"
-  },
   "devDependencies": {
     "@carbon/icons-react": "^11.76.0",
     "@cerberus-design/data-grid": "workspace:*",

@@ -74,8 +74,7 @@
   },
   "dependencies": {
     "@ark-ui/react": "^5.35.0",
-    "@carbon/icons-react": "^11.76.0",
-    "@pandacss/types": "^1.9.1"
+    "@carbon/icons-react": "^11.76.0"
   },
   "devDependencies": {
     "@cerberus/panda-preset": "workspace:*",

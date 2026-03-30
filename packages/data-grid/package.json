@@ -57,8 +57,7 @@
   },
   "dependencies": {
     "@cerberus-design/react": "workspace:*",
-    "@cerberus-design/signals": "workspace:*",
-    "@pandacss/types": "^1.9.1"
+    "@cerberus-design/signals": "workspace:*"
   },
   "devDependencies": {
     "@cerberus/panda-preset": "workspace:*",
