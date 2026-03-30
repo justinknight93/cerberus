@@ -24,7 +24,7 @@
     "@types/bun": "^1.3.10",
     "@types/mdx": "^2.0.13",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
+    "lint-staged": "^16.4.0",
     "oxfmt": "^0.38.0",
     "oxlint": "^1.32.0",
     "prettier": "3.8.1"
@@ -47,6 +47,7 @@
       "express-rate-limit": ">=8.2.2",
       "hono": ">=4.12.7",
       "minimatch": ">=10.2.3",
+      "path-to-regexp": ">=8.4.0",
       "picomatch": ">=4.0.4",
       "rollup": ">=4.59.0",
       "flatted": ">=3.4.2"
