@@ -1,1 +1,5 @@
-export const NEW = ['/docs/data-grid/theme', '/docs/data-grid/footer']
+export const NEW = [
+  '/docs/components/popover',
+  '/docs/data-grid/overlays',
+  '/docs/data-grid/filtering',
+]

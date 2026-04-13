@@ -60,18 +60,24 @@ export const items = [
   },
   {
     id: '1.4',
+    href: '/docs/data-grid/overlays',
+    label: 'Overlays',
+    slug: 'overlays',
+  },
+  {
+    id: '1.5',
     href: '/docs/data-grid/toolbar',
     label: 'Toolbar',
     slug: 'toolbar',
   },
   {
-    id: '1.5',
+    id: '1.6',
     href: '/docs/data-grid/footer',
     label: 'Footer',
     slug: 'footer',
   },
   {
-    id: '1.6',
+    id: '1.7',
     href: '/docs/data-grid/pagination',
     label: 'Pagination',
     slug: 'pagination',
@@ -92,6 +98,12 @@ export const items = [
     href: '/docs/data-grid/sort',
     label: 'Sorting',
     slug: 'sort',
+  },
+  {
+    id: '2.3',
+    href: '/docs/data-grid/filtering',
+    label: 'Filtering',
+    slug: 'filtering',
   },
   {
     id: '3.0',

@@ -8,8 +8,9 @@ import { PARTS, SCOPE } from '../const'
 import { DataGridProvider } from '../context.client'
 import { createGridStore } from '../store'
 import type { GridOptions } from '../types'
-import { GridViewport } from './grid.client'
 import { GridPagination } from './pagination.client'
+import { DGPopover, DGPopoverAnchor } from './popover.client'
+import { GridViewport } from './viewport.client'
 
 function DataGridEl<TData>(props: GridOptions<TData>) {
   const { data } = props
@@ -24,6 +25,8 @@ function DataGridEl<TData>(props: GridOptions<TData>) {
         initialState: props.initialState,
         rowSize: props.rowSize,
         onPageChange: props.onPageChange,
+        overlays: props.overlays,
+        pending: props.pending,
         theme: props.theme,
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,11 +37,17 @@ function DataGridEl<TData>(props: GridOptions<TData>) {
   const rootRef = useRef<HTMLDivElement>(null)
 
   // Sync data in store with props
+
   useEffect(() => {
     store.updateData(data)
   }, [data, store])
 
+  useEffect(() => {
+    store.updatePending(Boolean(props.pending))
+  }, [props.pending, store])
+
   // Set root CSS vars with rootRef
+
   useEffect(() => {
     const el = rootRef.current
     if (!el) return
@@ -77,25 +86,31 @@ function DataGridEl<TData>(props: GridOptions<TData>) {
         )}
       </Show>
 
-      <Stack
-        data-scope={SCOPE}
-        data-part={PARTS.ROOT}
-        dir="columns"
-        maxH="inherit"
-        minH="inherit"
-        gap="0"
-        h="full"
-        bgColor="page.surface.100/55"
-        border="var(--border, 1px solid)"
-        borderColor="var(--border-color, var(--cerberus-colors-page-border-initial))"
-        rounded="var(--rounded, var(--cerberus-radii-lg))"
-        overflow="hidden"
-        w="full"
-        ref={rootRef}
-      >
-        <Show when={ready}>{() => <GridViewport />}</Show>
-        <GridPagination />
-      </Stack>
+      <DGPopover>
+        <DGPopoverAnchor>
+          <Stack
+            data-scope={SCOPE}
+            data-part={PARTS.ROOT}
+            dir="columns"
+            maxH="inherit"
+            minH="inherit"
+            gap="0"
+            h="full"
+            bgColor="page.surface.100/55"
+            border="var(--border, 1px solid)"
+            borderColor="var(--border-color, var(--cerberus-colors-page-border-initial))"
+            rounded="var(--rounded, var(--cerberus-radii-lg))"
+            overflow="hidden"
+            w="full"
+            ref={rootRef}
+          >
+            <Show when={ready}>
+              {() => <GridViewport overlays={props.overlays} rootRef={rootRef} />}
+            </Show>
+            <GridPagination />
+          </Stack>
+        </DGPopoverAnchor>
+      </DGPopover>
 
       <Show when={props.footer}>
         {() => (
