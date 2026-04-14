@@ -39,4 +39,10 @@ export const items = [
     slug: 'llms',
     href: '/docs/get-started/llms',
   },
+  {
+    id: '2.3',
+    label: 'Context 7',
+    slug: 'context-7',
+    href: '/docs/get-started/context-7',
+  },
 ]
