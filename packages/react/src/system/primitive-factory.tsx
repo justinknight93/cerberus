@@ -1,5 +1,5 @@
 import { ark } from '@ark-ui/react/factory'
-import { type ElementType } from 'react'
+import { forwardRef, type ElementType } from 'react'
 import { css, cx, type Styles } from 'styled-system/css'
 import { cerberus } from 'styled-system/jsx/factory'
 import type { CerberusComponent, RecipeVariantRecord } from 'styled-system/types'
@@ -62,9 +62,11 @@ export class CerberusPrimitive {
     const { defaultProps } = options || {}
     const El = this.setupStyledComponent<T>(Component)
 
-    const CerbComponent = (props: CerberusPrimitiveProps<Props>) => {
-      return <El {...defaultProps} {...props} />
-    }
+    const CerbComponent = forwardRef<HTMLElement, CerberusPrimitiveProps<Props>>(
+      (props, ref) => {
+        return <El {...defaultProps} {...props} ref={ref} />
+      },
+    )
 
     const ElName = typeof El === 'string' ? El : El.displayName || El.name
     CerbComponent.displayName = `Cerberus.${ElName}`
@@ -86,25 +88,28 @@ export class CerberusPrimitive {
 
     const recipe = this.recipe as CerberusRecipe
 
-    const CerbComponent = (internalProps: CerberusPrimitiveProps<Props>) => {
-      const { css: customCss, ref, ...restOfInternalProps } = internalProps
+    const CerbComponent = forwardRef<HTMLElement, CerberusPrimitiveProps<Props>>(
+      (internalProps, ref) => {
+        const { css: customCss, ...restOfInternalProps } = internalProps
 
-      const [variantOptions, nativeProps] = recipe.splitVariantProps(restOfInternalProps)
-      const recipeStyles = recipe(variantOptions)
+        const [variantOptions, nativeProps] =
+          recipe.splitVariantProps(restOfInternalProps)
+        const recipeStyles = recipe(variantOptions)
 
-      // Safely access className
-      const className =
-        typeof nativeProps.className === 'string' ? nativeProps.className : undefined
+        // Safely access className
+        const className =
+          typeof nativeProps.className === 'string' ? nativeProps.className : undefined
 
-      return (
-        <El
-          {...defaultProps}
-          {...(nativeProps as Props)}
-          ref={ref}
-          className={cx(className, recipeStyles, css(customCss as Styles))}
-        />
-      )
-    }
+        return (
+          <El
+            {...defaultProps}
+            {...(nativeProps as Props)}
+            ref={ref}
+            className={cx(className, recipeStyles, css(customCss as Styles))}
+          />
+        )
+      },
+    )
 
     const ElName = typeof El === 'string' ? El : El.displayName || El.name
     CerbComponent.displayName = ElName
@@ -135,26 +140,29 @@ export class CerberusPrimitive {
 
     const recipe = this.recipe as CerberusSlotRecipe<typeof slot>
 
-    const CerbComponent = (internalProps: CerberusPrimitiveProps<Props>) => {
-      const { css: customCss, ref, ...restOfInternalProps } = internalProps
+    const CerbComponent = forwardRef<HTMLElement, CerberusPrimitiveProps<Props>>(
+      (internalProps, ref) => {
+        const { css: customCss, ...restOfInternalProps } = internalProps
 
-      const [variantOptions, nativeProps] = recipe.splitVariantProps(restOfInternalProps)
-      const styles = recipe(variantOptions)
-      const slotStyles = styles[slot as keyof typeof styles]
+        const [variantOptions, nativeProps] =
+          recipe.splitVariantProps(restOfInternalProps)
+        const styles = recipe(variantOptions)
+        const slotStyles = styles[slot as keyof typeof styles]
 
-      // Safely access className
-      const className =
-        typeof nativeProps.className === 'string' ? nativeProps.className : undefined
+        // Safely access className
+        const className =
+          typeof nativeProps.className === 'string' ? nativeProps.className : undefined
 
-      return (
-        <El
-          {...defaultProps}
-          {...(nativeProps as Props)}
-          ref={ref}
-          className={cx(className, slotStyles, css(customCss as Styles))}
-        />
-      )
-    }
+        return (
+          <El
+            {...defaultProps}
+            {...(nativeProps as Props)}
+            ref={ref}
+            className={cx(className, slotStyles, css(customCss as Styles))}
+          />
+        )
+      },
+    )
 
     const ElName = typeof El === 'string' ? El : El.displayName || El.name
     CerbComponent.displayName = ElName

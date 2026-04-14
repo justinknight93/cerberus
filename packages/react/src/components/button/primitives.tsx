@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, HTMLAttributes } from 'react'
+import type { HTMLAttributes } from 'react'
 import {
   button,
   buttonGroup,
@@ -6,6 +6,7 @@ import {
   type ButtonGroupVariantProps,
 } from 'styled-system/recipes'
 import {
+  CerberusProps,
   createCerberusPrimitive,
   type CerberusPrimitiveProps,
 } from '../../system/index'
@@ -22,9 +23,7 @@ const { withRecipe: withGroupRecipe } = createCerberusPrimitive(buttonGroup)
  * The root element of the Button component.
  */
 export const ButtonRoot = withRecipe('button')
-export type ButtonRootProps = CerberusPrimitiveProps<
-  ButtonHTMLAttributes<HTMLButtonElement> & ButtonVariantProps
->
+export type ButtonRootProps = CerberusProps<'button'> & ButtonVariantProps
 
 const ButtonGroupEl = withGroupRecipe('div')
 export type ButtonGroupProps = CerberusPrimitiveProps<
