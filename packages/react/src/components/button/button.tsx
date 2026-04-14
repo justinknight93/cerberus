@@ -31,7 +31,7 @@ export interface ButtonProps extends ButtonRootProps {
  * A component that allows the user to perform actions
  * @see https://cerberus.digitalu.design/react/button
  */
-export function Button(props: ButtonProps) {
+function ButtonEl(props: ButtonProps) {
   const { pending = false, ...nativeProps } = props
   const value = useMemo(() => ({ pending }), [pending])
   return (
@@ -60,3 +60,11 @@ export function ButtonIcon(props: CerberusProps<'div'>) {
     </Show>
   )
 }
+
+// Public API
+
+export function Button(props: ButtonProps) {
+  return <ButtonEl {...props} />
+}
+
+Button.Icon = ButtonIcon

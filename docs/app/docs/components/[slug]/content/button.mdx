@@ -65,10 +65,10 @@ You can create an attached button group by setting the `layout` prop to `attache
 
 You can utilize the primitive components or the `css` prop to customize the button.
 
-| Component | Description |
-| --------- | ----------- |
-| Button.Root    | The context provider for the Button parts |
-| Button.Icon  | The icon/spinner of the button |
+| Component   | Description                               |
+| ----------- | ----------------------------------------- |
+| Button.Root | The context provider for the Button parts |
+| Button.Icon | The icon/spinner of the button            |
 
 <CodePreview {...DEMOS.custom} />
 
@@ -76,22 +76,8 @@ You can utilize the primitive components or the `css` prop to customize the butt
 
 To enable global customization, you can modify the `theme` configuration in your `panda.config.ts` file. For example, to customize the button component globally:
 
-```typescript title="panda.config.ts"
-export default createCerberusConfig({
-  // ...
-  theme: {
-    extend: {
-      recipes: {
-        button: {
-          defaultVariants: {
-            shape: 'default',
-          },
-        },
-      }
-    }
-  }
-})
-```
+<CodePreview {...DEMOS.global} />
+<br />
 
 This change will set the default shape variant of all buttons to `default`.
 
@@ -101,28 +87,17 @@ This change will set the default shape variant of all buttons to `default`.
 
 The `Button` component is an abstraction of the primitives and accepts the following props:
 
-| Name     | Default | Description                            |
-| -------- | ------- | -------------------------------------- |
-| palette     | `action`   | The color palette (any of the Cerberus palettes) of the button. |
-| usage | `filled`    | The style treatment of the button.    |
-| shape | `sharp`     | The shape of the button.              |
-| pending | `false`    | The loading state of the button. When a button has an `Icon` it will replace it with a spinner. When not, is shows a disabled state.     |
-| asChild | | Render the Button as the child component. |
+| Name    | Default  | Description                                                                                                                          |
+| ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| palette | `action` | The color palette (any of the Cerberus palettes) of the button.                                                                      |
+| usage   | `filled` | The style treatment of the button.                                                                                                   |
+| shape   | `sharp`  | The shape of the button.                                                                                                             |
+| pending | `false`  | The loading state of the button. When a button has an `Icon` it will replace it with a spinner. When not, is shows a disabled state. |
+| asChild |          | Render the Button as the child component.                                                                                            |
 
 #### ButtonGroup Props
 
-| Name     | Default | Description                            |
-| -------- | ------- | -------------------------------------- |
-| layout   | `default` | The layout of the button group. Can be `default` or `attached`. |
-| shape    | `sharp`   | The shape of the buttons in the group. Should match the `shape` prop of the `Button` components used. |
-
-### Parts
-
-The `ButtonParts` API is an Object containing the full family of components.
-
-<NoteAdmonition description="It is best to only use the ButtonParts if you are building a custom solution. Importing Object based components will ship every property it includes into your bundle, regardless if you use it or not." />
-
-| Name     | Description                            |
-| -------- | -------------------------------------- |
-| Root     | The `Button` component which is the Provider for the family. |
-| Icon     | The `ButtonIcon` component which dynamically replaces an icon with a Spinner when the state is `pending`. |
+| Name   | Default   | Description                                                                                           |
+| ------ | --------- | ----------------------------------------------------------------------------------------------------- |
+| layout | `default` | The layout of the button group. Can be `default` or `attached`.                                       |
+| shape  | `sharp`   | The shape of the buttons in the group. Should match the `shape` prop of the `Button` components used. |

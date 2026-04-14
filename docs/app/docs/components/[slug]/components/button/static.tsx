@@ -45,5 +45,8 @@ export const DEMOS = {
     id: 'button.custom',
     preview: <CustomDemo />,
   },
+  global: {
+    id: 'button.global',
+  },
   meta: `import { Button } from '@cerberus/react';`,
 }
