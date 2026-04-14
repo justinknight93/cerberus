@@ -1,5 +1,6 @@
 'use client'
 
+import { DialogOpenChangeDetails } from '@ark-ui/react'
 import {
   useCallback,
   useContext,
@@ -11,9 +12,8 @@ import {
 } from 'react'
 import { HStack, VStack } from 'styled-system/jsx'
 import { useCerberusContext } from '../../context/cerberus'
-import { Show } from '../show/index'
-import { For } from '../for/index'
 import { Avatar } from '../avatar/avatar'
+import { DialogCloseIconTrigger } from '../dialog/close-icon-trigger'
 import {
   Dialog,
   DialogDescription,
@@ -21,14 +21,15 @@ import {
   DialogProvider,
   DialogRootProps,
 } from '../dialog/index'
-import { DialogCloseIconTrigger } from '../dialog/close-icon-trigger'
-import type { CTAButtonAction, CTAModalActionReturn } from './utils'
+import { For } from '../for/index'
+import { Show } from '../show/index'
 import {
   CTAModalContext,
   type CTAModalValue,
   type ShowCTAModalOptions,
 } from './context'
 import { TriggerItem } from './trigger-item'
+import type { CTAButtonAction, CTAModalActionReturn } from './utils'
 
 /**
  * This module provides the provider and hook for the cta modal.
@@ -111,7 +112,7 @@ export function CTAModal(props: PropsWithChildren<DialogRootProps>) {
       <DialogProvider
         lazyMount
         open={open}
-        onOpenChange={(e) => setOpen(e.open)}
+        onOpenChange={(details: DialogOpenChangeDetails) => setOpen(details.open)}
         unmountOnExit
         {...rootProps}
       >
@@ -129,10 +130,7 @@ export function CTAModal(props: PropsWithChildren<DialogRootProps>) {
                 <Avatar
                   gradient="charon-light"
                   fallback={
-                    <Show
-                      when={confirmIcon}
-                      fallback={<FallbackIcon size={24} />}
-                    >
+                    <Show when={confirmIcon} fallback={<FallbackIcon size={24} />}>
                       {confirmIcon}
                     </Show>
                   }
@@ -159,9 +157,7 @@ export function CTAModal(props: PropsWithChildren<DialogRootProps>) {
                   <Show
                     key={index}
                     when={content?.actions?.type === 'btnAction'}
-                    fallback={
-                      <TriggerItem asChild>{action as ReactNode}</TriggerItem>
-                    }
+                    fallback={<TriggerItem asChild>{action as ReactNode}</TriggerItem>}
                   >
                     <TriggerItem data-index={index} onClick={handleActionClick}>
                       {(action as CTAButtonAction)?.text}

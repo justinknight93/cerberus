@@ -1,5 +1,6 @@
 'use client'
 
+import { DialogCloseTrigger, DialogOpenChangeDetails } from '@ark-ui/react/dialog'
 import {
   createContext,
   useCallback,
@@ -11,17 +12,12 @@ import {
   type MouseEvent,
   type PropsWithChildren,
 } from 'react'
-import { DialogCloseTrigger } from '@ark-ui/react/dialog'
-import { HStack, VStack } from 'styled-system/jsx'
 import { css } from 'styled-system/css'
+import { HStack, VStack } from 'styled-system/jsx'
 import { hstack } from 'styled-system/patterns'
-import { FieldLabel, FieldRoot, Input } from '../components/field/index'
+import { Avatar } from '../components/avatar/avatar'
 import { Button } from '../components/button/button'
 import { Clipboard } from '../components/clipboard/index'
-import { Show } from '../components/show/index'
-import { Avatar } from '../components/avatar/avatar'
-import { Text } from '../components/text/index'
-import { IconButton } from '../components/icon-button/index'
 import {
   Dialog,
   DialogDescription,
@@ -29,6 +25,10 @@ import {
   DialogProvider,
   DialogRootProps,
 } from '../components/dialog/index'
+import { FieldLabel, FieldRoot, Input } from '../components/field/index'
+import { IconButton } from '../components/icon-button/index'
+import { Show } from '../components/show/index'
+import { Text } from '../components/text/index'
 import { useCerberusContext } from './cerberus'
 
 /**
@@ -63,9 +63,7 @@ export interface ShowPromptModalOptions {
    */
   cancelText: string
 }
-export type PromptShowResult =
-  | ((value: string | PromiseLike<string>) => void)
-  | null
+export type PromptShowResult = ((value: string | PromiseLike<string>) => void) | null
 
 export interface PromptModalValue {
   /**
@@ -117,9 +115,7 @@ export type PromptModalProviderProps = PropsWithChildren<DialogRootProps>
  * }, [prompt])
  * ```
  */
-export function PromptModal(
-  props: PropsWithChildren<PromptModalProviderProps>,
-) {
+export function PromptModal(props: PropsWithChildren<PromptModalProviderProps>) {
   const { children, ...rootProps } = props
 
   const [open, setOpen] = useState<boolean>(false)
@@ -131,10 +127,7 @@ export function PromptModal(
   const { icons } = useCerberusContext()
   const { promptModal: PromptIcon } = icons
 
-  const isValid = useMemo(
-    () => inputValue === content?.key,
-    [inputValue, content],
-  )
+  const isValid = useMemo(() => inputValue === content?.key, [inputValue, content])
 
   const palette = useMemo(
     () => (content?.kind === 'destructive' ? 'danger' : 'action'),
@@ -181,7 +174,7 @@ export function PromptModal(
       <DialogProvider
         lazyMount
         open={open}
-        onOpenChange={(e) => setOpen(e.open)}
+        onOpenChange={(e: DialogOpenChangeDetails) => setOpen(e.open)}
         unmountOnExit
         {...rootProps}
       >
@@ -191,31 +184,15 @@ export function PromptModal(
             '--dialog-content-min-h': 'auto',
           }}
         >
-          <VStack
-            alignItems="flex-start"
-            h="full"
-            justify="space-between"
-            w="full"
-          >
-            <HStack
-              alignSelf="center"
-              justify="center"
-              paddingBlockEnd="md"
-              w="full"
-            >
+          <VStack alignItems="flex-start" h="full" justify="space-between" w="full">
+            <HStack alignSelf="center" justify="center" paddingBlockEnd="md" w="full">
               <Show
                 when={palette === 'danger'}
                 fallback={
-                  <Avatar
-                    gradient="charon-light"
-                    fallback={<PromptIcon size={24} />}
-                  />
+                  <Avatar gradient="charon-light" fallback={<PromptIcon size={24} />} />
                 }
               >
-                <Avatar
-                  gradient="hades-dark"
-                  fallback={<PromptIcon size={24} />}
-                />
+                <Avatar gradient="hades-dark" fallback={<PromptIcon size={24} />} />
               </Show>
             </HStack>
 
@@ -249,12 +226,7 @@ export function PromptModal(
                         </Clipboard.Label>
 
                         <Clipboard.Trigger asChild>
-                          <IconButton
-                            clipboard
-                            shape="square"
-                            size="sm"
-                            rounded="xs"
-                          >
+                          <IconButton clipboard shape="square" size="sm" rounded="xs">
                             <Clipboard.Indicator />
                           </IconButton>
                         </Clipboard.Trigger>

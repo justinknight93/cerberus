@@ -1,13 +1,15 @@
-import { ButtonParts } from '@cerberus-design/react'
+'use client'
+
+import { Button } from '@cerberus-design/react'
 import { ArrowDownRight } from '@carbon/icons-react'
 
 export function IconDemo() {
   return (
-    <ButtonParts.Root>
+    <Button>
       With icon
-      <ButtonParts.Icon>
+      <Button.Icon>
         <ArrowDownRight />
-      </ButtonParts.Icon>
-    </ButtonParts.Root>
+      </Button.Icon>
+    </Button>
   )
 }

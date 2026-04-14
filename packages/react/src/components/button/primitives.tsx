@@ -1,12 +1,15 @@
-import { ark } from '@ark-ui/react/factory'
-import type { ButtonHTMLAttributes, HTMLAttributes } from 'react'
+import type { HTMLAttributes } from 'react'
 import {
   button,
   buttonGroup,
   ButtonVariantProps,
   type ButtonGroupVariantProps,
 } from 'styled-system/recipes'
-import { createCerberusPrimitive, type CerberusPrimitiveProps } from '../../system/index'
+import {
+  CerberusProps,
+  createCerberusPrimitive,
+  type CerberusPrimitiveProps,
+} from '../../system/index'
 
 /**
  * This module contains the Button component primitives.
@@ -19,12 +22,10 @@ const { withRecipe: withGroupRecipe } = createCerberusPrimitive(buttonGroup)
 /**
  * The root element of the Button component.
  */
-export const ButtonRoot = withRecipe(ark.button)
-export type ButtonRootProps = CerberusPrimitiveProps<
-  ButtonHTMLAttributes<HTMLButtonElement> & ButtonVariantProps
->
+export const ButtonRoot = withRecipe('button')
+export type ButtonRootProps = CerberusProps<'button'> & ButtonVariantProps
 
-const ButtonGroupEl = withGroupRecipe(ark.div)
+const ButtonGroupEl = withGroupRecipe('div')
 export type ButtonGroupProps = CerberusPrimitiveProps<
   HTMLAttributes<HTMLDivElement> & ButtonGroupVariantProps
 >

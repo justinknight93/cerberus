@@ -1,14 +1,18 @@
 'use client'
 
 import { createContext, useContext, useMemo } from 'react'
+import { css, cx } from 'styled-system/css'
 import { Box } from 'styled-system/jsx'
+import { button } from 'styled-system/recipes'
+import { cerberus } from '../../system/index'
 import type { CerberusProps } from '../../system/types'
 import { Show } from '../show/index'
 import { Spinner } from '../spinner/index'
-import { ButtonRoot, ButtonRootProps } from './primitives'
+import { ButtonRootProps } from './primitives'
 
 /**
- * This module contains the Button component.
+ * This module contains the Button component. For some reason, the Ark-UI Popover
+ * will not pass refs to this button API so we have to manually bootstrap the button.
  * @module
  */
 
@@ -31,16 +35,22 @@ export interface ButtonProps extends ButtonRootProps {
  * A component that allows the user to perform actions
  * @see https://cerberus.digitalu.design/react/button
  */
-export function Button(props: ButtonProps) {
-  const { pending = false, ...nativeProps } = props
+function ButtonEl(props: ButtonProps) {
+  const [variantProps, elProps] = button.splitVariantProps(props)
+  const { pending = false, ...nativeProps } = elProps
+
+  const styles = button(variantProps)
+
   const value = useMemo(() => ({ pending }), [pending])
+
   return (
     <ButtonContext.Provider value={value}>
-      <ButtonRoot
-        {...nativeProps}
+      <cerberus.button
         data-scope="button"
         data-part="root"
+        {...nativeProps}
         disabled={pending || nativeProps.disabled}
+        className={cx(elProps.className, styles, css(elProps.css))}
       />
     </ButtonContext.Provider>
   )
@@ -54,9 +64,19 @@ export function ButtonIcon(props: CerberusProps<'div'>) {
   const { pending } = useContext(ButtonContext)
   return (
     <Show when={pending} fallback={<>{props.children}</>}>
-      <Box data-scope="button" data-part="button-spinner" w="4">
+      <Box data-scope="button" data-part="button-spinner" ref={props.ref} w="4">
         <Spinner />
       </Box>
     </Show>
   )
 }
+
+// Public API
+
+export function Button(props: ButtonProps) {
+  return <ButtonEl {...props} />
+}
+Button.displayName = 'Button'
+
+Button.Icon = ButtonIcon
+ButtonIcon.displayName = 'ButtonIcon'
