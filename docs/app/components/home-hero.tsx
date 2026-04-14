@@ -4,8 +4,8 @@ import { button } from 'styled-system/recipes'
 import CerberusLogo from './cerberus-logo'
 import { vstack } from 'styled-system/patterns'
 import { animateIn, grid, gridItem } from 'styled-system/patterns'
-import { Tag } from '@cerberus-design/react'
-import { HStack } from 'styled-system/jsx'
+import { Tag, Text } from '@cerberus-design/react'
+import { HStack, Stack } from 'styled-system/jsx'
 import { CheckmarkFilled } from '@carbon/icons-react'
 import { HomeHeroText } from './home-hero-text'
 
@@ -67,7 +67,6 @@ export default function HomeHero() {
                 animationFillMode: 'forwards',
                 color: 'page.text.100',
                 opacity: 0,
-                maxW: '44ch',
                 textStyle: 'display-sm',
                 textWrap: 'pretty',
                 lg: {
@@ -76,26 +75,36 @@ export default function HomeHero() {
                 },
               })}
             >
-              Protect your brand <HomeHeroText />
+              Cerberus <HomeHeroText />
             </h1>
 
-            <p
-              className={css({
-                animationName: 'slideFromBottom, fadeIn',
-                animationDuration: 'slowest',
-                animationDelay: '600ms',
-                animationFillMode: 'forwards',
-                maxW: '44ch',
-                opacity: 0,
-                textStyle: 'body-lg',
-                lg: {
-                  lineHeight: 'relaxed',
-                  textStyle: 'body-xl',
-                },
-              })}
-            >
-              Create React 19+ design systems effortlessly.
-            </p>
+            <Stack direction="column" gap="sm" w="full">
+              <Text
+                as="h2"
+                animationName="slideFromBottom, fadeIn"
+                animationDuration="slowest"
+                animationDelay="600ms"
+                animationFillMode="forwards"
+                maxW="44ch"
+                opacity="0"
+                textStyle="heading-md"
+              >
+                Improving React development for humans and agents.
+              </Text>
+
+              <Text
+                animationName="slideFromBottom, fadeIn"
+                animationDuration="slowest"
+                animationDelay="600ms"
+                animationFillMode="forwards"
+                maxW="60ch"
+                opacity="0"
+                textStyle="body-lg"
+              >
+                An infra-level UI platform to create cohesion and consistency so teams
+                and agents can build faster, together.
+              </Text>
+            </Stack>
           </div>
 
           <div
