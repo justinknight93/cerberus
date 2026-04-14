@@ -25,6 +25,7 @@ export {
   DatePickerRootProvider,
   useDialog,
   DialogRootProvider,
+  type DialogOpenChangeDetails,
   useEditable,
   EditableRootProvider,
   useField,
