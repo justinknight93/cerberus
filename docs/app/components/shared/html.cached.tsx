@@ -11,6 +11,7 @@ import {
 } from '@cerberus-design/react'
 import { Analytics } from '@vercel/analytics/react'
 import { Poppins, Recursive } from 'next/font/google'
+import Script from 'next/script'
 import type { PropsWithChildren } from 'react'
 
 const poppins = Poppins({
@@ -80,6 +81,11 @@ export async function CachedHTML(props: PropsWithChildren<object>) {
           {props.children}
         </ThemeProvider>
 
+        <Script
+          src="https://context7.com/widget.js"
+          data-library="/omnifed/cerberus"
+          strategy="afterInteractive"
+        />
         <Analytics />
       </cerberus.body>
     </html>
