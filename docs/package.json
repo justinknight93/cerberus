@@ -5,8 +5,8 @@
   "scripts": {
     "prepare": "panda codegen",
     "panda:build": "panda codegen --config panda.prod.ts && panda spec",
-    "dev": "rm -rf .next && next dev",
-    "build": "pnpm runpanda:build && next build",
+    "dev": "rm -rf .next && panda spec && next dev",
+    "build": "pnpm run panda:build && next build",
     "start": "next start",
     "lint": "next lint"
   },
