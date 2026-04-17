@@ -70,6 +70,12 @@ export const DEMOS = {
     id: 'dialog.non',
     preview: <NonModalDemo />,
   },
+  behavior: {
+    id: 'dialog.behavior',
+  },
+  dynamic: {
+    id: 'dialog.dynamic',
+  },
   meta: `import {
   Dialog,
   DialogTrigger,
@@ -81,5 +87,8 @@ export const DEMOS = {
 `,
   nestedCss: `[data-part='content'][data-has-nested] {
   transform: scale(calc(1 - var(--nested-layer-count) * 0.05));
+}`,
+  zIndexCss: `[data-part='content'] {
+  z-index: calc(var(--layer-index));
 }`,
 }

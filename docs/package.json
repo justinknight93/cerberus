@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prepare": "panda codegen && pnpm run spec",
-    "spec": "panda spec",
+    "prepare": "panda codegen",
+    "panda:build": "panda codegen --config panda.prod.ts && panda spec",
     "dev": "rm -rf .next && next dev",
-    "build": "next build",
+    "build": "pnpm runpanda:build && next build",
     "start": "next start",
     "lint": "next lint"
   },

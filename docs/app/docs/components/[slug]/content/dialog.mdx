@@ -111,9 +111,36 @@ We don't recommend using a non-modal dialog due to the accessibility concerns th
 
 ## Guides
 
+### Close Behavior
+
+- `closeOnEscape={false}` - Prevent closing on Escape
+- `closeOnInteractOutside={false}` - Prevent closing on outside click
+
+For conditional control, use `onEscapeKeyDown` or `onInteractOutside` with `e.preventDefault()`.
+
 ### Conditional Rendering
 
-TODO...
+Unmounting `Dialog.Root` when toggling open state can break focus, scroll lock, and cleanup. Keep the root mounted and control it with `open` / `onOpenChange`.
+
+When you want portal content out of the DOM while closed, add `lazyMount` and `unmountOnExit` to the root.
+
+<CodePreview {...DEMOS.behavior} />
+
+### Z-index Stacking
+
+Use the `--layer-index` CSS variable for z-index management of stacked dialogs:
+
+<CodeSnippet snippet={DEMOS.zIndexCss} />
+
+### Dynamic Imports
+
+When using `lazyMount` with `lazy` or Next.js `dynamic`, wrap the imported component in `Suspense`:
+
+<CodePreview {...DEMOS.dynamic} />
+
+### Customizing
+
+You can customize the `Dialog` using style props and data selectors on any slot primitve.
 
 ## Primitives
 
@@ -137,25 +164,131 @@ You can utilize the primitive components or the `css` prop to customize the dial
 
 The `Dialog` component is an abstraction of the primitives and accepts the following props:
 
-| Name | Default | Description              |
-| ---- | ------- | ------------------------ |
-| size | `sm`    | This size of the Dialog. |
+#### Root Props:
 
-The `Dialog` component also accepts all the props of the [`DialogContent` primitive props](https://ark-ui.com/react/docs/components/dialog#api-reference)
+| Prop                     | Type                                       | Required | Description                                                                                                           |
+| ------------------------ | ------------------------------------------ | -------- | --------------------------------------------------------------------------------------------------------------------- |
+| `aria-label`             | `string`                                   | No       | Human readable label for the dialog, in event the dialog title is not rendered                                        |
+| `closeOnEscape`          | `boolean`                                  | No       | Whether to close the dialog when the escape key is pressed                                                            |
+| `closeOnInteractOutside` | `boolean`                                  | No       | Whether to close the dialog when the outside is clicked                                                               |
+| `defaultOpen`            | `boolean`                                  | No       | The initial open state of the dialog when rendered. Use when you don't need to control the open state of the dialog.  |
+| `finalFocusEl`           | `() => MaybeElement`                       | No       | Element to receive focus when the dialog is closed                                                                    |
+| `id`                     | `string`                                   | No       | The unique identifier of the machine.                                                                                 |
+| `ids`                    | `Partial<PrimitiveLayers>`                 | No       | The ids of the elements in the dialog. Useful for composition.                                                        |
+| `immediate`              | `boolean`                                  | No       | Whether to synchronize the present change immediately or defer it to the next frame                                   |
+| `initialFocusEl`         | `() => MaybeElement`                       | No       | Element to receive focus when the dialog is opened                                                                    |
+| `lazyMount`              | `boolean`                                  | No       | Whether to enable lazy mounting                                                                                       |
+| `modal`                  | `boolean`                                  | No       | Whether to prevent pointer interaction outside the element and hide all content below it                              |
+| `onEscapeKeyDown`        | `(event: KeyboardEvent) => void`           | No       | Function called when the escape key is pressed                                                                        |
+| `onExitComplete`         | `VoidFunction`                             | No       | Function called when the animation ends in the closed state                                                           |
+| `onFocusOutside`         | `(event: FocusOutsideEvent) => void`       | No       | Function called when the focus is moved outside the component                                                         |
+| `onInteractOutside`      | `(event: InteractOutsideEvent) => void`    | No       | Function called when an interaction happens outside the component                                                     |
+| `onOpenChange`           | `(details: OpenChangeDetails) => void`     | No       | Function to call when the dialog's open state changes                                                                 |
+| `onPointerDownOutside`   | `(event: PointerDownOutsideEvent) => void` | No       | Function called when the pointer is pressed down outside the component                                                |
+| `onRequestDismiss`       | `(event: LayerDismissEvent) => void`       | No       | Function called when this layer is closed due to a parent layer being closed                                          |
+| `open`                   | `boolean`                                  | No       | The controlled open state of the dialog                                                                               |
+| `persistentElements`     | `(() => Element \| null)[]`                | No       | Returns the persistent elements that: should not have pointer-events disabled or should not trigger the dismiss event |
+| `present`                | `boolean`                                  | No       | Whether the node is present (controlled by the user)                                                                  |
+| `preventScroll`          | `boolean`                                  | No       | Whether to prevent scrolling behind the dialog when it's opened                                                       |
+| `restoreFocus`           | `boolean`                                  | No       | Whether to restore focus to the element that had focus before the dialog was opened                                   |
+| `role`                   | `'dialog' \| 'alertdialog'`                | No       | The dialog's role                                                                                                     |
+| `skipAnimationOnMount`   | `boolean`                                  | No       | Whether to allow the initial presence animation.                                                                      |
+| `size`                   | string                                     | No       | This size of the Dialog.                                                                                              |
+| `trapFocus`              | `boolean`                                  | No       | Whether to trap focus inside the dialog when it's opened                                                              |
+| `unmountOnExit`          | `boolean`                                  | No       | Whether to unmount on exit.                                                                                           |
 
-### Parts
+#### Backdrop Props:
 
-The `DialogParts` API is an Object containing the full family of components.
+| Prop      | Type      | Required | Description                                                                                         |
+| --------- | --------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `asChild` | `boolean` | No       | Use the provided child element as the default rendered element, combining their props and behavior. |
 
-<NoteAdmonition description="It is best to only use the DialogParts if you are building a custom solution. Importing Object based components will ship every property it includes into your bundle, regardless if you use it or not." />
+#### Backdrop Data Attributes:
 
-| Name         | Description                                                             |
-| ------------ | ----------------------------------------------------------------------- |
-| Root         | The `DialogRoot` primitive and context provider for the family.         |
-| Trigger      | The `DialogTrigger` trigger element that opens the dialog.              |
-| Backdrop     | The `DialogBackdrop` that covers the page when the dialog is open.      |
-| Positioner   | The `DialogPositioner` and container that positions the dialog content. |
-| Content      | The `DialogContent` that is shown within the dialog.                    |
-| Heading      | The `DialogHeading` which is the heading of the dialog.                 |
-| Description  | The `DialogDescription` and description of the dialog.                  |
-| CloseTrigger | The `DialogCloseTrigger` trigger element that closes the dialog.        |
+| Attribute      | Value              |
+| -------------- | ------------------ |
+| `[data-scope]` | dialog             |
+| `[data-part]`  | backdrop           |
+| `[data-state]` | "open" \| "closed" |
+
+#### Backdrop CSS Variables:
+
+| Variable        | Description                                     |
+| --------------- | ----------------------------------------------- |
+| `--layer-index` | The index of the dismissable in the layer stack |
+
+#### CloseTrigger Props:
+
+| Prop      | Type      | Required | Description                                                                                         |
+| --------- | --------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `asChild` | `boolean` | No       | Use the provided child element as the default rendered element, combining their props and behavior. |
+
+#### Content Props:
+
+| Prop      | Type      | Required | Description                                                                                         |
+| --------- | --------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `asChild` | `boolean` | No       | Use the provided child element as the default rendered element, combining their props and behavior. |
+
+#### Content Data Attributes:
+
+| Attribute           | Value              |
+| ------------------- | ------------------ |
+| `[data-scope]`      | dialog             |
+| `[data-part]`       | content            |
+| `[data-state]`      | "open" \| "closed" |
+| `[data-nested]`     | dialog             |
+| `[data-has-nested]` | dialog             |
+
+#### Content CSS Variables:
+
+| Variable               | Description                                     |
+| ---------------------- | ----------------------------------------------- |
+| `--layer-index`        | The index of the dismissable in the layer stack |
+| `--nested-layer-count` | The number of nested dialogs                    |
+
+#### Description Props:
+
+| Prop      | Type      | Required | Description                                                                                         |
+| --------- | --------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `asChild` | `boolean` | No       | Use the provided child element as the default rendered element, combining their props and behavior. |
+
+#### Positioner Props:
+
+| Prop      | Type      | Required | Description                                                                                         |
+| --------- | --------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `asChild` | `boolean` | No       | Use the provided child element as the default rendered element, combining their props and behavior. |
+
+#### RootProvider Props
+
+| Prop                   | Type              | Required | Description                                                                                         |
+| ---------------------- | ----------------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `value`                | `UseDialogReturn` | Yes      |                                                                                                     |
+| `asChild`              | `boolean`         | No       | Use the provided child element as the default rendered element, combining their props and behavior. |
+| `immediate`            | `boolean`         | No       | Whether to synchronize the present change immediately or defer it to the next frame                 |
+| `lazyMount`            | `boolean`         | No       | Whether to enable lazy mounting                                                                     |
+| `onExitComplete`       | `VoidFunction`    | No       | Function called when the animation ends in the closed state                                         |
+| `present`              | `boolean`         | No       | Whether the node is present (controlled by the user)                                                |
+| `skipAnimationOnMount` | `boolean`         | No       | Whether to allow the initial presence animation.                                                    |
+| `unmountOnExit`        | `boolean`         | No       | Whether to unmount on exit.                                                                         |
+
+#### Title Props:
+
+| Prop      | Type      | Required | Description                                                                                         |
+| --------- | --------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `asChild` | `boolean` | No       | Use the provided child element as the default rendered element, combining their props and behavior. |
+
+#### Trigger Props
+
+| Prop      | Type      | Required | Description                                                                                         |
+| --------- | --------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `asChild` | `boolean` | No       | Use the provided child element as the default rendered element, combining their props and behavior. |
+
+#### Trigger Data Attributes
+
+| Attribute        | Value                 |
+| ---------------- | --------------------- |
+| `[data-scope]`   | dialog                |
+| `[data-part]`    | trigger               |
+| `[data-value]`   | The value of the item |
+| `[data-state]`   | "open" \| "closed"    |
+| `[data-current]` | Present when current  |
