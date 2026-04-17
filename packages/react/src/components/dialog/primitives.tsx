@@ -1,5 +1,6 @@
 import {
   Dialog,
+  type DialogRootProviderProps as ArkDialogRootProviderProps,
   type DialogBackdropProps as ArkDialogBackdropProps,
   type DialogContentProps as ArkDialogContentProps,
   type DialogDescriptionProps as ArkDialogDescriptionProps,
@@ -7,6 +8,7 @@ import {
   type DialogRootProps as ArkDialogRootProps,
   type DialogTitleProps as ArkDialogTitleProps,
   type DialogTriggerProps as ArkDialogTriggerProps,
+  type DialogContextProps as ArkDialogContextProps,
 } from '@ark-ui/react/dialog'
 import { dialog, type DialogVariantProps } from 'styled-system/recipes'
 import {
@@ -47,8 +49,7 @@ export const DialogBackdrop = withSlotRecipe(Dialog.Backdrop, 'backdrop')
 /**
  * The container that positions the dialog.
  */
-export type DialogPositionerProps =
-  CerberusPrimitiveProps<ArkDialogPositionerProps>
+export type DialogPositionerProps = CerberusPrimitiveProps<ArkDialogPositionerProps>
 export const DialogPositioner = withSlotRecipe(Dialog.Positioner, 'positioner')
 
 /**
@@ -68,16 +69,16 @@ export const DialogHeading = withSlotRecipe(Dialog.Title, 'title')
 /**
  * The description of the dialog.
  */
-export type DialogDescriptionProps =
-  CerberusPrimitiveProps<ArkDialogDescriptionProps>
-export const DialogDescription = withSlotRecipe(
-  Dialog.Description,
-  'description',
-)
+export type DialogDescriptionProps = CerberusPrimitiveProps<ArkDialogDescriptionProps>
+export const DialogDescription = withSlotRecipe(Dialog.Description, 'description')
 
 /**
  * The trigger that closes the dialog.
  */
-export type DialogCloseTriggerProps =
-  CerberusPrimitiveProps<ArkDialogTriggerProps>
+export type DialogCloseTriggerProps = CerberusPrimitiveProps<ArkDialogTriggerProps>
 export const DialogCloseTrigger = withNoRecipe(Dialog.CloseTrigger)
+
+export type DialogContextProps = CerberusPrimitiveProps<ArkDialogContextProps>
+export const DialogContext = Dialog.Context
+
+export type DialogRootProviderProps = CerberusPrimitiveProps<ArkDialogRootProviderProps>
