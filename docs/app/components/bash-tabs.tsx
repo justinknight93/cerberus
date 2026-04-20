@@ -1,3 +1,5 @@
+'use client'
+
 import { cerberus, Tabs } from '@cerberus-design/react'
 import { css } from 'styled-system/css'
 import { Code } from './code'
