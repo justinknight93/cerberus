@@ -1,18 +1,29 @@
-import { cerberus, HStack } from 'styled-system/jsx'
+'use client'
+
 import { Terminal } from '@carbon/icons-react'
 import { Show } from '@cerberus-design/react'
+import { createQuery, useQuery, useSignal } from '@cerberus-design/signals'
+import { useRef } from 'react'
 import { css } from 'styled-system/css'
-import { CopyButton } from './copy-button'
+import { cerberus, HStack } from 'styled-system/jsx'
 import { getCodeString } from './code-preview/helpers'
+import { CopyButton } from './copy-button'
 
 interface CodeBlockProps {
   content: string
   language?: string
 }
 
-export async function CodeBlock(props: CodeBlockProps) {
-  'use cache'
-  const out = await getCodeString(props.content)
+export function CodeBlock(props: CodeBlockProps) {
+  const [_, _set, getContent] = useSignal<string>(props.content)
+
+  const ref = useRef(
+    createQuery(getContent, async (content) => {
+      const result = await getCodeString(content)
+      return result
+    }),
+  )
+  const data = useQuery(ref.current)
 
   return (
     <cerberus.div my="md">
@@ -32,7 +43,7 @@ export async function CodeBlock(props: CodeBlockProps) {
         </HStack>
       </Show>
 
-      <cerberus.div dangerouslySetInnerHTML={{ __html: out }} />
+      <cerberus.div dangerouslySetInnerHTML={{ __html: data }} />
     </cerberus.div>
   )
 }

@@ -9,7 +9,7 @@ interface CodeProps {
 export function Code(props: CodeProps) {
   return (
     <Show when={Boolean(props.children.length)}>
-      <CodeBlock language={props.language} content={props.children} />
+      {() => <CodeBlock language={props.language} content={props.children} />}
     </Show>
   )
 }

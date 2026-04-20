@@ -1,5 +1,8 @@
-import { Suspense, type PropsWithChildren, type ReactNode } from 'react'
+'use client'
+
 import { Collapsible } from '@cerberus-design/react'
+import { createQuery, useQuery, useSignal } from '@cerberus-design/signals'
+import { Suspense, useRef, type PropsWithChildren, type ReactNode } from 'react'
 import { Box, HStack, VStack } from 'styled-system/jsx'
 import { CollapsibleCode } from './code-preview/collapsible-code'
 import { CollapsibleProvider } from './code-preview/collapsible-provider.client'
@@ -12,17 +15,23 @@ interface CodePreviewProps {
   context?: 'components' | 'data-grid'
 }
 
-export default async function CodePreview(
-  props: PropsWithChildren<CodePreviewProps>,
-) {
-  const { code, preview, fallback, rawContent } = await getExampleCode(
-    props.id,
-    props.children,
-    props.context,
+export default function CodePreview(props: PropsWithChildren<CodePreviewProps>) {
+  const [_, _set, getContent] = useSignal<CodePreviewProps>({
+    id: props.id,
+    preview: props.preview,
+    context: props.context,
+  })
+
+  const ref = useRef(
+    createQuery(getContent, async (content) => {
+      const result = await getExampleCode(content.id, content.preview, content.context)
+      return result
+    }),
   )
+  const data = useQuery(ref.current)
 
   if (!props.preview && props.id) {
-    return <CollapsibleCode code={code} fallback={fallback} />
+    return <CollapsibleCode code={data.code} fallback={data.fallback} />
   }
 
   return (
@@ -36,7 +45,7 @@ export default async function CodePreview(
     >
       <Suspense>
         <HStack justify="center" py="md" w="full">
-          {preview ?? props.preview}
+          {data.preview ?? props.preview}
         </HStack>
       </Suspense>
 
@@ -49,10 +58,10 @@ export default async function CodePreview(
             w="fit-content"
             zIndex="sticky"
           >
-            <CopyButton content={rawContent} />
+            <CopyButton content={data.rawContent} />
           </Box>
 
-          <CollapsibleCode code={code} fallback={fallback} />
+          <CollapsibleCode code={data.code} fallback={data.fallback} />
         </Collapsible.Content>
       </CollapsibleProvider>
     </VStack>
