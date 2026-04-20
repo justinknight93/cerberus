@@ -1,7 +1,10 @@
 ---
 ---
 
-import { WarningAdmonition } from '@/app/components/Admonition';
+import CodePreview from '@/app/components/CodePreview'
+import { CodeSnippet } from '@/app/components/code-snippet'
+import { WarningAdmonition } from '@/app/components/Admonition'
+import { DEMOS } from '../components/composition/static'
 
 ## Composition
 
@@ -13,11 +16,16 @@ Used to change the underlying HTML element that a React component renders. It
 provides a straightforward way to change the underlying element while retaining
 the component's functionality.
 
-```tsx
-<Text as="h3">Hello, world!</Text>
-```
+<CodeSnippet snippet={DEMOS.as} />
 
-<WarningAdmonition description={<>This is only available for the <code>Text</code> component which is a wrapper around our text-related patterns.</>} />
+<WarningAdmonition
+  description={
+    <>
+      This is only available for the <code>Text</code> component which is a wrapper
+      around our text-related patterns.
+    </>
+  }
+/>
 
 ## The `asChild` Prop
 
@@ -26,11 +34,8 @@ approach, inspired by
 [Radix UI](https://www.radix-ui.com/primitives/docs/utilities/slot), offers
 maximum flexibility.
 
-```tsx
-<Button asChild>
-  <Link href="/some-page">Open</Link>
-</Button>
-```
+<CodeSnippet snippet={DEMOS.asChild} />
+<br />
 
 In this example, the `asChild` prop allows the link to be used as the
 button (e.g., a button-styled link).
@@ -47,12 +52,4 @@ few best practices to consider:
 
 ### Advanced Usage Example
 
-```tsx
-const MyComponent = forwardRef((props, ref) => {
-  return <Box ref={ref} {...props} />
-})
-
-<Button asChild>
-  <MyComponent> Click me </MyComponent>
-</Button>
-```
+<CodePreview {...DEMOS.best} />
