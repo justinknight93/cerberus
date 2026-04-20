@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "panda:build": "panda codegen --config panda.prod.ts && panda spec",
     "dev": "rm -rf .next && panda codegen && panda spec && next dev",
-    "build": "pnpm run panda:build && next build",
+    "build": "pnpm run panda:build && pnpm run next:build",
+    "panda:build": "panda codegen --config panda.prod.ts && panda spec",
+    "next:build": "NODE_OPTIONS='--max-old-space-size=4096' next build",
     "start": "next start",
     "lint": "next lint"
   },
