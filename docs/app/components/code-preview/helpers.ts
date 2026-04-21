@@ -18,7 +18,8 @@ export async function getExampleCode(
   fallback?: ReactNode,
   context?: 'components' | 'data-grid',
 ): Promise<ExampleCodeReturn> {
-  if (!id) return { code: fallback, preview: null, rawContent: '', fallback: true }
+  if (!id)
+    return { code: fallback, preview: null, rawContent: '', fallback: true }
 
   const data = _getExampleData(id)
   const basePath = _getBasePath(context)

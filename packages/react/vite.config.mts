@@ -43,7 +43,9 @@ export default defineConfig({
         }
 
         // Handle all package.json dependencies and their subpaths
-        return allDependencies.some((dep) => id === dep || id.startsWith(`${dep}/`))
+        return allDependencies.some(
+          (dep) => id === dep || id.startsWith(`${dep}/`),
+        )
       },
       output: [
         {
@@ -73,9 +75,13 @@ export default defineConfig({
 const renderBanner = (fileName: string) => {
   const file = path.parse(fileName)
   if (
-    ['portal', 'frame', 'client-only', 'focus-trap', 'download-trigger'].includes(
-      file.name,
-    )
+    [
+      'portal',
+      'frame',
+      'client-only',
+      'focus-trap',
+      'download-trigger',
+    ].includes(file.name)
   ) {
     return `'use client';`
   }
@@ -85,6 +91,7 @@ const renderBanner = (fileName: string) => {
   return `'use client';`
 }
 
+// e.g Avatar.tsx, Accordion.tsx
 const isBarrelComponent = (file: path.ParsedPath) =>
   file.dir.endsWith(file.name) &&
   !['presence', 'environment', 'locale'].includes(file.dir)
