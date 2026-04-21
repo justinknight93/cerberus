@@ -13,8 +13,8 @@ importers:
         version: 5.9.3
     devDependencies:
       '@types/bun':
-        specifier: ^1.3.12
-        version: 1.3.12
+        specifier: ^1.3.11
+        version: 1.3.11
       '@types/mdx':
         specifier: ^2.0.13
         version: 2.0.13
@@ -135,8 +135,8 @@ importers:
         specifier: ^2.0.13
         version: 2.0.13
       '@types/node':
-        specifier: ^25.6.0
-        version: 25.6.0
+        specifier: ^25.5.2
+        version: 25.5.2
       '@types/react':
         specifier: 19.2.14
         version: 19.2.14
@@ -147,8 +147,8 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1(next@16.2.4(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)
       autoprefixer:
-        specifier: ^10.5.0
-        version: 10.5.0(postcss@8.5.9)
+        specifier: ^10.4.27
+        version: 10.4.27(postcss@8.5.9)
       babel-plugin-react-compiler:
         specifier: ^1.0.0
         version: 1.0.0
@@ -2248,8 +2248,8 @@ packages:
   '@types/aria-query@5.0.4':
     resolution: {integrity: sha512-rfT93uj5s0PRL7EzccGMs3brplhcrghnDoV26NqKhCAS1hVo+WdNsPvE/yb6ilfr5hi2MEk6d5EWJTKdxg8jVw==}
 
-  '@types/bun@1.3.12':
-    resolution: {integrity: sha512-DBv81elK+/VSwXHDlnH3Qduw+KxkTIWi7TXkAeh24zpi5l0B2kUg9Ga3tb4nJaPcOFswflgi/yAvMVBPrxMB+A==}
+  '@types/bun@1.3.11':
+    resolution: {integrity: sha512-5vPne5QvtpjGpsGYXiFyycfpDF2ECyPcTSsFBMa0fraoxiQyMJ3SmuQIGhzPg2WJuWxVBoxWJ2kClYTcw/4fAg==}
 
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
@@ -2289,6 +2289,9 @@ packages:
 
   '@types/node@17.0.45':
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
+
+  '@types/node@25.5.2':
+    resolution: {integrity: sha512-tO4ZIRKNC+MDWV4qKVZe3Ql/woTnmHDr5JD8UI5hn2pwBrHEwOEMZK7WlNb5RKB6EoJ02gwmQS9OrjuFnZYdpg==}
 
   '@types/node@25.6.0':
     resolution: {integrity: sha512-+qIYRKdNYJwY3vRCZMdJbPLJAtGjQBudzZzdzwQYkEPQd+PJGixUL5QfvCLDaULoLv+RhT3LDkwEfKaAkgSmNQ==}
@@ -3130,8 +3133,8 @@ packages:
     peerDependencies:
       postcss: ^8.1.0
 
-  autoprefixer@10.5.0:
-    resolution: {integrity: sha512-FMhOoZV4+qR6aTUALKX2rEqGG+oyATvwBt9IIzVR5rMa2HRWPkxf+P+PAJLD1I/H5/II+HuZcBJYEFBpq39ong==}
+  autoprefixer@10.4.27:
+    resolution: {integrity: sha512-NP9APE+tO+LuJGn7/9+cohklunJsXWiaWEfV3si4Gi/XHDwVNgkwr1J3RQYFIvPy76GmJ9/bW8vyoU1LcxwKHA==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
@@ -3214,8 +3217,8 @@ packages:
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
 
-  bun-types@1.3.12:
-    resolution: {integrity: sha512-HqOLj5PoFajAQciOMRiIZGNoKxDJSr6qigAttOX40vJuSp6DN/CxWp9s3C1Xwm4oH7ybueITwiaOcWXoYVoRkA==}
+  bun-types@1.3.11:
+    resolution: {integrity: sha512-1KGPpoxQWl9f6wcZh57LvrPIInQMn2TQ7jsgxqpRzg+l0QPOFvJVH7HmvHo/AiPgwXy+/Thf6Ov3EdVn1vOabg==}
 
   bun@1.2.15:
     resolution: {integrity: sha512-9Nryct8QYQRE/W3/FjW2i4eLdVKme7JPY8R9DNLSGjKdSX8uMgZ2mogs+H5d88Ng0bYeSLpUkBhRelbNi8MwYA==}
@@ -5865,6 +5868,9 @@ packages:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
     engines: {node: '>= 0.4'}
 
+  undici-types@7.18.2:
+    resolution: {integrity: sha512-AsuCzffGHJybSaRrmr5eHr81mwJU3kjw6M+uprWvCXiNeN9SOGwQ3Jn8jb8m3Z6izVgknn1R0FTCEAP2QrLY/w==}
+
   undici-types@7.19.2:
     resolution: {integrity: sha512-qYVnV5OEm2AW8cJMCpdV20CDyaN3g0AjDlOGf1OW4iaDEx8MwdtChUp4zu4H0VP3nDRF/8RKWH+IPp9uW0YGZg==}
 
@@ -6832,7 +6838,7 @@ snapshots:
 
   '@happy-dom/global-registrator@20.8.9':
     dependencies:
-      '@types/node': 25.6.0
+      '@types/node': 25.5.2
       happy-dom: 20.8.9
     transitivePeerDependencies:
       - bufferutil
@@ -7957,9 +7963,9 @@ snapshots:
 
   '@types/aria-query@5.0.4': {}
 
-  '@types/bun@1.3.12':
+  '@types/bun@1.3.11':
     dependencies:
-      bun-types: 1.3.12
+      bun-types: 1.3.11
 
   '@types/debug@4.1.12':
     dependencies:
@@ -8003,9 +8009,14 @@ snapshots:
 
   '@types/node@17.0.45': {}
 
+  '@types/node@25.5.2':
+    dependencies:
+      undici-types: 7.18.2
+
   '@types/node@25.6.0':
     dependencies:
       undici-types: 7.19.2
+    optional: true
 
   '@types/react-dom@19.2.3(@types/react@19.2.14)':
     dependencies:
@@ -8023,7 +8034,7 @@ snapshots:
 
   '@types/ws@8.18.1':
     dependencies:
-      '@types/node': 25.6.0
+      '@types/node': 25.5.2
 
   '@typescript-eslint/eslint-plugin@8.58.2(@typescript-eslint/parser@8.58.2(eslint@10.1.0(jiti@2.4.2))(typescript@6.0.2))(eslint@10.1.0(jiti@2.4.2))(typescript@6.0.2)':
     dependencies:
@@ -9196,10 +9207,10 @@ snapshots:
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
 
-  autoprefixer@10.5.0(postcss@8.5.9):
+  autoprefixer@10.4.27(postcss@8.5.9):
     dependencies:
-      browserslist: 4.28.2
-      caniuse-lite: 1.0.30001788
+      browserslist: 4.28.1
+      caniuse-lite: 1.0.30001779
       fraction.js: 5.3.4
       picocolors: 1.1.1
       postcss: 8.5.9
@@ -9288,9 +9299,9 @@ snapshots:
   buffer-from@1.1.2:
     optional: true
 
-  bun-types@1.3.12:
+  bun-types@1.3.11:
     dependencies:
-      '@types/node': 25.6.0
+      '@types/node': 25.5.2
 
   bun@1.2.15:
     optionalDependencies:
@@ -10365,7 +10376,7 @@ snapshots:
 
   happy-dom@20.8.9:
     dependencies:
-      '@types/node': 25.6.0
+      '@types/node': 25.5.2
       '@types/whatwg-mimetype': 3.0.2
       '@types/ws': 8.18.1
       entities: 7.0.1
@@ -12781,7 +12792,10 @@ snapshots:
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
 
-  undici-types@7.19.2: {}
+  undici-types@7.18.2: {}
+
+  undici-types@7.19.2:
+    optional: true
 
   unicode-emoji-modifier-base@1.0.0: {}
 
