@@ -2,7 +2,6 @@ import ApiLinks from '@/app/components/ApiLinks'
 import { HStack, VStack } from '@/styled-system/jsx'
 import { Show, Text } from '@cerberus-design/react'
 import { notFound } from 'next/navigation'
-import { Suspense } from 'react'
 import type { DocFrontmatter } from '../../types'
 import { items } from './content/items'
 
@@ -84,9 +83,7 @@ export default async function GetStartedSlugPage(props: {
         </VStack>
       </Show>
 
-      <Suspense>
-        <Doc />
-      </Suspense>
+      <Doc />
     </>
   )
 }
