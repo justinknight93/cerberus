@@ -88,13 +88,13 @@ describe('Combobox', () => {
     expect(screen.getByText('🔥')).toBeInTheDocument()
   })
 
-  test('should return a stateful object for the root component', async () => {
+  test('should return a stateful object for the root component and filter', async () => {
     function Test() {
       const { collection, handleInputChange } = useStatefulCollection([
         { label: 'Hades', value: 'hades' },
         { label: 'Persephone', value: 'persephone' },
         { label: 'Zeus', value: 'zeus', disabled: true },
-        { label: 'Heracles', value: 'Hercules' },
+        { label: 'Heracles', value: 'half god' },
       ])
       return (
         <Combobox
